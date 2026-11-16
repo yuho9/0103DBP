@@ -1,0 +1,57 @@
+/* CampusMatching 포트폴리오 생성·수정: 상세 조회 화면과 같은 색감/3열 카드 */
+.portfolio-form-main {min-height:calc(100vh - 170px);padding:42px 24px 64px;background:#F7F5F2;color:#171717}
+.portfolio-form-main * {box-sizing:border-box}
+.portfolio-form-container {max-width:1000px;margin:0 auto}
+.form-heading {margin-bottom:24px}
+.form-eyebrow {display:block;margin-bottom:12px;color:#570C28;font-size:11px;letter-spacing:2px;font-weight:600}
+.form-heading h1 {margin:0 0 18px;font-size:32px;font-weight:700}
+.form-heading p {margin:0;font-size:13px;color:#81786F;line-height:1.7}
+.owner-card {display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:18px;padding:23px;background:white;border:1px solid #DED8D2;border-radius:16px}
+.owner-info {display:flex;align-items:center;gap:16px;min-width:0}
+.owner-avatar {width:68px;height:68px;flex-shrink:0;overflow:hidden;background:#EEEAE6;border-radius:50%}
+.owner-avatar img {width:100%;height:100%;display:block;object-fit:cover}
+.owner-eyebrow {display:inline-block;padding:5px 10px;background:#F2E7EB;border-radius:20px;color:#570C28;font-size:11px;font-weight:600}
+.owner-text h2 {font-size:20px;margin:7px 0 4px}
+.owner-text p {margin:0 0 8px;color:#81786F;font-size:12px}
+.owner-note {max-width:200px;font-size:11px;line-height:1.6;color:#81786F;text-align:right}
+.small-tags {display:flex;flex-wrap:wrap;gap:5px}
+.small-tags span {padding:4px 8px;border-radius:5px;background:#EEEAE6;color:#635B56;font-size:11px}
+.form-card {background:#FFF;border:1px solid #DED8D2;border-radius:16px;padding:22px 20px;min-width:0}
+.basics-card {margin-bottom:18px;padding:24px}
+.card-heading h2 {font-size:16px;font-weight:700;margin:0 0 12px}
+.card-heading h2 small {color:#81786F;font-size:10px;font-weight:400;margin-left:6px}
+.heading-line {height:2px;background:#570C28;margin-bottom:18px}
+.form-field {display:flex;flex-direction:column;gap:7px;margin-bottom:15px;min-width:0}
+.form-field label {font-size:12px;color:#333;font-weight:700}
+.form-field input:not([type="checkbox"]),.form-field textarea,.form-field select {width:100%;min-width:0;min-height:42px;padding:10px 12px;color:#171717;background:#FFF;border:1px solid #DED8D2;border-radius:8px;font:inherit;font-size:12px;line-height:1.5}
+.form-field textarea {resize:vertical}
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus {outline:1px solid #570C28;border-color:#570C28}
+.form-field input[type="file"] {padding:8px}
+.form-field small {font-size:10px;color:#81786F}
+.required {color:#A33A49}
+.settings-layout {display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center;padding-top:8px}
+.check-row {display:flex;align-items:flex-start;gap:12px;padding:14px;background:#F9F6F5;border:1px solid #E9DCDF;border-radius:10px;cursor:pointer}
+.check-row input {accent-color:#570C28;width:17px;height:17px;margin-top:2px;flex-shrink:0}
+.check-row strong {display:block;font-size:13px;color:#570C28}
+.check-row small {display:block;margin-top:5px;font-size:11px;color:#81786F;line-height:1.5}
+.visibility-field {margin:0}
+.visibility-field[hidden] {display:none}
+.portfolio-form-grid {display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:18px;align-items:start}
+.form-column {display:flex;flex-direction:column;gap:18px;min-width:0}
+.entry-list {display:flex;flex-direction:column;gap:16px}
+.edit-entry {position:relative;padding:12px;background:#FBF9F7;border:1px solid #EEEAE6;border-radius:10px}
+.edit-entry + .edit-entry {margin-top:2px}
+.edit-entry .form-field:last-child {margin-bottom:0}
+.remove-entry {position:absolute;top:6px;right:7px;background:transparent;color:#81786F;border:none;border-radius:4px;font-size:20px;line-height:1;cursor:pointer}
+.remove-entry:hover {color:#A33A49;background:#F2E7EB}
+.add-entry {display:block;width:100%;margin-top:14px;padding:10px;border:1px dashed #CBB6BF;border-radius:9px;background:#FFF;color:#570C28;font-size:12px;font-weight:700;cursor:pointer}
+.add-entry:hover {background:#F7F0F2}
+.form-actions {display:flex;gap:10px;margin-top:20px}
+.form-actions button {min-height:44px;border-radius:9px;padding:10px 20px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.action-primary {background:#570C28;border:1px solid #570C28;color:white}
+.action-primary:hover {background:#720F35}
+.action-secondary {background:#FFF;border:1px solid #DED8D2;color:#570C28}
+.action-secondary:hover {background:#F7F5F2}
+.form-notice {margin:16px 0 0;padding:14px 18px;background:#EEEAE6;border-radius:8px;color:#81786F;font-size:11px}
+@media(max-width:900px) {.portfolio-form-grid {grid-template-columns:repeat(2,minmax(0,1fr))}.form-column:nth-child(2) {grid-column:2;grid-row:1 / span 2}}
+@media(max-width:650px) {.portfolio-form-main {padding:28px 16px 48px}.form-heading h1 {font-size:27px}.owner-card {align-items:flex-start;flex-direction:column}.owner-note {max-width:none;text-align:left}.portfolio-form-grid,.settings-layout {grid-template-columns:1fr}.form-column:nth-child(2) {grid-column:auto;grid-row:auto}.form-card {padding:20px 18px}}

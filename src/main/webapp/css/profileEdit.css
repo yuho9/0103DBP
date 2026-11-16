@@ -1,0 +1,433 @@
+
+@charset "UTF-8";
+
+/* ==============================
+   프로필 수정 페이지
+============================== */
+
+.profile-edit-main {
+    min-height: calc(100vh - 170px);
+    padding: 44px 24px 64px;
+    background: #F7F5F2;
+}
+
+.profile-edit-main * {
+    box-sizing: border-box;
+}
+
+.profile-edit-container {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* ==============================
+   페이지 제목
+============================== */
+
+.profile-edit-heading {
+    margin-bottom: 22px;
+}
+
+.profile-edit-eyebrow {
+    display: block;
+    margin-bottom: 14px;
+
+    color: #570C28;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.profile-edit-heading h1 {
+    margin: 0 0 18px;
+
+    color: #171717;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.profile-edit-heading p {
+    margin: 0;
+    color: #81786F;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ==============================
+   프로필 수정 카드
+============================== */
+
+.profile-edit-card {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    padding: 32px 26px;
+
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    border-radius: 16px;
+}
+
+/* ==============================
+   프로필 이미지
+============================== */
+
+.profile-edit-photo-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* 기본/등록 이미지 */
+.profile-edit-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 112px;
+    height: 112px;
+    flex-shrink: 0;
+
+    overflow: hidden;
+    border: 1px solid #DED8D2;
+    border-radius: 50%;
+
+    background: #F7F5F2;
+}
+
+.profile-edit-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-edit-photo-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-edit-photo-controls strong {
+    color: #171717;
+    font-size: 15px;
+}
+
+.profile-edit-photo-controls p {
+    margin: 0;
+    color: #81786F;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.profile-photo-buttons {
+    display: flex;
+    gap: 9px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+/* 사진 변경 버튼 */
+.profile-photo-upload-btn,
+.profile-photo-reset-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 38px;
+    padding: 9px 13px;
+
+    border-radius: 8px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.profile-photo-upload-btn {
+    background: #570C28;
+    border: 1px solid #570C28;
+    color: #FFFFFF;
+}
+
+.profile-photo-upload-btn:hover {
+    background: #75183C;
+}
+
+.profile-photo-reset-btn {
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    color: #570C28;
+}
+
+.profile-photo-reset-btn:hover {
+    background: #F7F5F2;
+}
+
+/* 구분선 */
+.profile-edit-divider {
+    width: 100%;
+    height: 1px;
+    margin: 2px 0;
+
+    border: none;
+    background: #EAE4E0;
+}
+
+/* ==============================
+   공통 입력 필드
+============================== */
+
+.profile-edit-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.profile-edit-field > label {
+    color: #171717;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.profile-edit-field input:not([type="hidden"]),
+.profile-edit-field select {
+    width: 100%;
+    min-height: 47px;
+    padding: 0 14px;
+
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    border-radius: 9px;
+
+    color: #171717;
+    font: inherit;
+    font-size: 14px;
+}
+
+.profile-edit-field input:focus,
+.profile-edit-field select:focus {
+    outline: none;
+    border-color: #570C28;
+}
+
+.profile-edit-field input::placeholder {
+    color: #A39B96;
+}
+
+.required {
+    color: #A33A49;
+}
+
+.profile-edit-field-help {
+    margin: 0;
+    color: #81786F;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* ==============================
+   보유 기술 태그
+============================== */
+
+.selected-skills {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    min-height: 43px;
+}
+
+.skill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 7px 10px;
+    border: 1px solid #E4CDD5;
+    border-radius: 20px;
+
+    background: #F7EDF1;
+    color: #570C28;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.skill-tag-remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 18px;
+    height: 18px;
+    padding: 0;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+    color: #570C28;
+
+    font: inherit;
+    font-size: 17px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.skill-tag-remove:hover {
+    background: #EAD9DF;
+}
+
+/* 선택 + 추가 버튼 */
+.skill-input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill-input-row input,
+.skill-input-row select {
+    min-width: 0;
+    flex: 1;
+}
+
+.skill-input-row .skill-add-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 90px;
+    min-height: 47px;
+    padding: 0 14px;
+
+    background: #570C28;
+    border: 1px solid #570C28;
+    border-radius: 9px;
+
+    color: #FFFFFF;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.skill-input-row .skill-add-btn:hover {
+    background: #75183C;
+}
+
+.skill-input-row .skill-add-btn.secondary {
+    background: #FFFFFF;
+    border-color: #DED8D2;
+    color: #570C28;
+}
+
+.skill-input-row .skill-add-btn.secondary:hover {
+    background: #F7F5F2;
+}
+
+.skill-count {
+    margin: 0;
+    text-align: right;
+
+    color: #81786F;
+    font-size: 12px;
+}
+
+/* ==============================
+   하단 버튼
+============================== */
+
+.profile-edit-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 8px;
+}
+
+.profile-edit-save-btn,
+.profile-edit-cancel-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    padding: 12px 20px;
+
+    border-radius: 9px;
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.profile-edit-save-btn {
+    background: #570C28;
+    border: 1px solid #570C28;
+    color: #FFFFFF;
+}
+
+.profile-edit-save-btn:hover {
+    background: #75183C;
+}
+
+.profile-edit-cancel-btn {
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    color: #570C28;
+}
+
+.profile-edit-cancel-btn:hover {
+    background: #F7F5F2;
+}
+
+/* ==============================
+   반응형
+============================== */
+
+@media (max-width: 600px) {
+
+    .profile-edit-main {
+        padding: 32px 16px 48px;
+    }
+
+    .profile-edit-heading h1 {
+        font-size: 27px;
+    }
+
+    .profile-edit-card {
+        padding: 24px 18px;
+        gap: 22px;
+    }
+
+    .profile-edit-photo-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .profile-edit-avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .skill-input-row {
+        gap: 7px;
+    }
+
+    .skill-input-row .skill-add-btn {
+        min-width: 76px;
+        padding: 0 10px;
+        font-size: 12px;
+    }
+}

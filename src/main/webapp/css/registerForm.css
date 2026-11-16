@@ -1,0 +1,205 @@
+
+@charset "UTF-8";
+
+/* ==============================
+   회원가입 전체 배경
+============================== */
+
+.register-main {
+    width: 100%;
+    min-height: 680px;
+    flex: 1 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    padding: 38px 24px 65px;
+    background-color: #F7F5F2;
+}
+
+/* 전체 회원가입 콘텐츠 */
+.register-container {
+    width: 100%;
+    max-width: 610px;
+    min-width: 0;
+}
+
+/* ==============================
+   회원가입 제목
+============================== */
+
+.register-heading {
+    margin-bottom: 20px;
+}
+
+.register-label {
+    display: block;
+    margin-bottom: 13px;
+
+    color: #8C2045;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+}
+
+.register-heading h1 {
+    margin: 0;
+
+    color: #171717;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.4;
+    letter-spacing: -1px;
+}
+
+/* ==============================
+   회원가입 카드
+============================== */
+
+.register-form {
+    width: 100%;
+    padding: 28px 25px;
+
+    background-color: #FFFFFF;
+    border: 1px solid #DED8D2;
+    border-radius: 16px;
+}
+
+/* ==============================
+   입력 필드 - 1열 배치
+============================== */
+
+.register-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+}
+
+.register-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.register-field label {
+    color: #181818;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.register-field input {
+    display: block;
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+
+    border: 1px solid #DDD6D0;
+    border-radius: 9px;
+    outline: none;
+    background-color: #FFFFFF;
+
+    color: #222222;
+    font-size: 14px;
+    font-weight: 400;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.register-field input::placeholder {
+    color: #948A83;
+    opacity: 1;
+}
+
+.register-field input:focus {
+    border-color: #570C28;
+    box-shadow: 0 0 0 3px rgba(87, 12, 40, 0.10);
+}
+
+/* ==============================
+   가입 완료 버튼
+============================== */
+
+.register-buttons {
+    margin-top: 26px;
+}
+
+.register-buttons button {
+    width: 100%;
+    height: 46px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    border-radius: 9px;
+    background-color: #570C28;
+
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.register-buttons button:hover {
+    background-color: #75183C;
+}
+
+.register-buttons button:active {
+    background-color: #40091D;
+}
+
+/* ==============================
+   태블릿
+============================== */
+
+@media (max-width: 768px) {
+    .register-main {
+        padding: 32px 24px 55px;
+    }
+
+    .register-heading h1 {
+        font-size: 29px;
+    }
+
+    .register-form {
+        padding: 24px;
+    }
+}
+
+/* ==============================
+   모바일
+============================== */
+
+@media (max-width: 480px) {
+    .register-main {
+        padding: 26px 16px 45px;
+    }
+
+    .register-heading h1 {
+        font-size: 26px;
+    }
+
+    .register-form {
+        padding: 22px 18px;
+        border-radius: 12px;
+    }
+
+    .register-fields {
+        gap: 17px;
+    }
+
+    .register-field input {
+        height: 46px;
+    }
+
+    .register-buttons button {
+        height: 46px;
+    }
+}

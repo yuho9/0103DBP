@@ -1,0 +1,1321 @@
+@font-face {
+    font-family: Noto;
+    src: url(assets/NotoSansKR.ttf)
+}
+
+:root {
+    --main: #5A0C26;
+    --accent: #7A1C34;
+    --taupe: #B7B0A8;
+    --cream: #EDEAE4;
+    --ink: #1A1A1A;
+    --line: #ded9d2
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: #f8f6f2;
+    color: var(--ink);
+    font: 14px Noto,sans-serif
+}
+
+button,input,select,textarea {
+    font: inherit
+}
+
+button,a {
+    cursor: pointer
+}
+
+a {
+    color: inherit;
+    text-decoration: none
+}
+
+button {
+    border: 1px solid var(--line);
+    background: white;
+    border-radius: 9px;
+    padding: 11px 18px;
+    color: var(--main);
+    font-weight: 600
+}
+
+button:hover {
+    background: var(--cream)
+}
+
+.primary {
+    background: var(--main);
+    color: white;
+    border-color: var(--main)
+}
+
+.primary:hover {
+    background: var(--accent)
+}
+
+.muted {
+    color: #756f69
+}
+
+.tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    background: var(--cream);
+    color: var(--main);
+    margin: 0 5px 5px 0
+}
+
+.pill {
+    border-radius: 30px;
+    background: #f0e4e7
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 14px
+}
+
+.between {
+    justify-content: space-between
+}
+
+.grid {
+    display: grid;
+    gap: 20px
+}
+
+.cols3 {
+    grid-template-columns: repeat(3,1fr)
+}
+
+.cols2 {
+    grid-template-columns: 1fr 1fr
+}
+
+.card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px
+}
+
+h1,h2,h3,p {
+    margin-top: 0
+}
+
+h1 {
+    font-size: 34px;
+    letter-spacing: -1.2px;
+    line-height: 1.4
+}
+
+h2 {
+    font-size: 22px;
+    letter-spacing: -.6px
+}
+
+h3 {
+    font-size: 17px
+}
+
+p {
+    line-height: 1.9
+}
+
+small {
+    font-size: 11px
+}
+
+.header {
+    height: 86px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 64px
+}
+
+.brand {
+    font-size: 23px;
+    letter-spacing: -1px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--main)
+}
+
+.brand img {
+    width: 36px
+}
+
+.nav {
+    display: flex;
+    gap: 32px;
+    color: #756f69
+}
+
+.nav a.active {
+    color: var(--main);
+    font-weight: 700
+}
+
+.content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 36px 20px 65px
+}
+
+.hero {
+    background: var(--main);
+    color: var(--cream);
+    border-radius: 18px;
+    padding: 44px 48px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    margin-bottom: 32px;
+    min-height: 300px
+}
+
+.hero h1 {
+    font-size: 38px
+}
+
+.hero img {
+    width: 100%;
+    max-height: 260px
+}
+
+.hero button {
+    background: var(--cream)
+}
+
+.section {
+    margin-top: 32px
+}
+
+.cover {
+    height: 105px;
+    background: var(--cream);
+    border-radius: 9px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px;
+    color: var(--main)
+}
+
+.cover b {
+    font-size: 32px;
+    letter-spacing: -1px
+}
+
+.project .desc {
+    min-height: 50px
+}
+
+.project h3 {
+    margin: 12px 0 8px
+}
+
+.project .foot {
+    border-top: 1px solid var(--line);
+    margin-top: 18px;
+    padding-top: 16px
+}
+
+.avatar {
+    background: var(--cream);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--main);
+    font-weight: bold
+}
+
+.label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 12px
+}
+
+.input,input,textarea,select {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    padding: 13px;
+    color: var(--ink)
+}
+
+label {
+    display: block;
+    margin: 18px 0 8px;
+    font-weight: 600
+}
+
+textarea {
+    min-height: 115px
+}
+
+.tabs {
+    display: flex;
+    gap: 24px;
+    border-bottom: 1px solid var(--line);
+    margin: 28px 0
+}
+
+.tabs button {
+    border: 0;
+    background: none;
+    padding: 12px 0;
+    border-radius: 0;
+    color: #756f69
+}
+
+.tabs button.active {
+    color: var(--main);
+    border-bottom: 3px solid var(--main)
+}
+
+.split {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 24px
+}
+
+.metric {
+    font-size: 32px;
+    color: var(--main);
+    font-weight: 700
+}
+
+.bar {
+    height: 7px;
+    background: var(--cream);
+    border-radius: 6px;
+    overflow: hidden
+}
+
+.bar i {
+    display: block;
+    background: var(--main);
+    height: 100%
+}
+
+.side {
+    border-right: 1px solid var(--line);
+    padding: 32px 20px;
+    min-height: 780px;
+    background: white
+}
+
+.side a {
+    display: block;
+    padding: 14px 18px;
+    border-radius: 8px;
+    color: #756f69;
+    margin-bottom: 8px
+}
+
+.side a.active {
+    background: var(--cream);
+    color: var(--main);
+    font-weight: bold
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: 210px 1fr
+}
+
+.workmain {
+    padding: 36px 36px 70px
+}
+
+.task {
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: white;
+    margin-top: 14px
+}
+
+.task p {
+    font-size: 12px;
+    color: #756f69;
+    margin: 10px 0
+}
+
+.kanban {
+    background: #eeebe6;
+    border-radius: 12px;
+    padding: 18px
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: 70px repeat(5,1fr);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden
+}
+
+.calendar div {
+    min-height: 74px;
+    padding: 12px;
+    border-bottom: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    background: white;
+    font-size: 12px
+}
+
+.calendar .event {
+    background: #f0e4e7;
+    color: var(--main);
+    font-weight: 600
+}
+
+.calendar .head {
+    min-height: 48px;
+    background: var(--cream)
+}
+
+.auth {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 814px
+}
+
+.auth-art {
+    background: var(--main);
+    color: var(--cream);
+    padding: 70px
+}
+
+.auth-art img {
+    width: 100%;
+    margin-top: 24px
+}
+
+.auth-form {
+    padding: 75px 105px;
+    background: white
+}
+
+.auth-form h1 {
+    font-size: 30px
+}
+
+.auth-form button {
+    width: 100%;
+    margin-top: 24px
+}
+
+.note {
+    background: var(--cream);
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.9
+}
+
+.designnav {
+    position: fixed;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a1a1a;
+    color: white;
+    padding: 9px 18px;
+    border-radius: 30px;
+    z-index: 99;
+    display: flex;
+    gap: 12px;
+    font-size: 11px;
+    white-space: nowrap
+}
+
+.designnav a {
+    opacity: .7
+}
+
+.designnav a:hover {
+    opacity: 1
+}
+
+.toast {
+    position: fixed;
+    top: 100px;
+    right: 24px;
+    background: var(--main);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 10px;
+    z-index: 100
+}
+
+.no-toolbar .designnav {
+    display: none
+}
+
+footer {
+    padding: 24px 64px;
+    border-top: 1px solid var(--line);
+    color: #756f69;
+    font-size: 12px
+}
+
+.formgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 20px
+}
+
+.status {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line)
+}
+
+@media(max-width: 800px) {
+    .header {
+        padding:0 20px
+    }
+
+    .nav {
+        gap: 12px;
+        font-size: 12px
+    }
+
+    .content {
+        padding: 24px 16px
+    }
+
+    .hero {
+        padding: 28px;
+        grid-template-columns: 1fr
+    }
+
+    .hero img {
+        display: none
+    }
+
+    .cols3,.cols2,.split,.auth {
+        grid-template-columns: 1fr
+    }
+
+    .auth-art {
+        display: none
+    }
+
+    .auth-form {
+        padding: 40px 24px
+    }
+
+    .workspace {
+        grid-template-columns: 1fr
+    }
+
+    .side {
+        min-height: 0;
+        display: flex;
+        overflow: auto;
+        padding: 10px
+    }
+
+    .side a {
+        white-space: nowrap
+    }
+
+    .workmain {
+        padding: 24px 16px
+    }
+
+    .designnav {
+        max-width: 95vw;
+        overflow: auto;
+        left: 12px;
+        transform: none
+    }
+
+    .hero h1 {
+        font-size: 30px
+    }
+
+    .calendar {
+        overflow: auto
+    }
+
+    footer {
+        padding: 20px
+    }
+}
+
+/* ===== 프로필 카드 ===== */
+
+.profile-card {
+    padding: 28px;
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    border-radius: 16px;
+}
+
+/* 프로필 상단 */
+.profile-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.avatar {
+    width: 68px;
+    height: 68px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #EEEAE6;
+    color: #570C28;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.profile-nickname {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: #171717;
+}
+
+.profile-school {
+    margin: 6px 0 0;
+    font-size: 14px;
+    color: #81786F;
+}
+
+/* 회원정보 수정 버튼 */
+.profile-edit-btn {
+    padding: 12px 16px;
+    border: 1px solid #DED8D2;
+    border-radius: 9px;
+    background: #FFFFFF;
+    color: #570C28;
+
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.profile-edit-btn:hover {
+    background: #F7F5F2;
+}
+
+/* 상세 정보 */
+.profile-details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid #EEEAE6;
+}
+
+.profile-item {
+    min-width: 0;
+}
+
+.profile-label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #81786F;
+}
+
+.profile-value {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #171717;
+}
+
+/* 기술 스택 */
+.profile-skills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.profile-skills .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    background: #F2EDEB;
+    border-radius: 6px;
+    font-size: 12px;
+    color: #570C28;
+}
+
+/* 뱃지 3개 가로 배치 */
+.profile-badges {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.badge-circle {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border: 1px solid #DDD6D0;
+    border-radius: 50%;
+    background: #F7F5F2;
+}
+
+/* 모바일 */
+@media (max-width: 600px) {
+    .profile-card {
+        padding: 20px;
+    }
+
+    .profile-top {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .profile-details {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+.avatar {
+    width: 68px;
+    height: 68px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #EEEAE6;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
+/* 포트폴리오 카드 */
+.portfolio-card {
+    position: relative;
+    min-width: 0;
+    padding: 24px;
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    border-radius: 14px;
+}
+
+/* 상단: 대표 태그 + 별 */
+.portfolio-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 32px;
+}
+
+/* 대표 별 버튼 */
+.representative-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 36px;
+    height: 36px;
+    padding: 5px;
+
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.representative-btn img {
+    display: block;
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+.representative-btn:hover {
+    background: #F7F0F2;
+}
+
+/* 포트폴리오 제목 */
+.portfolio-title {
+    margin: 16px 0 12px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #171717;
+}
+
+/* 한 줄 소개 */
+.portfolio-summary {
+    margin: 0 0 24px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #81786F;
+}
+
+/* 수정 버튼 */
+.portfolio-edit-btn {
+    padding: 10px 16px;
+    border: 1px solid #DED8D2;
+    border-radius: 9px;
+    background: #FFFFFF;
+
+    color: #570C28;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.portfolio-edit-btn:hover {
+    background: #F7F5F2;
+}
+/* 포트폴리오 카드 상단 */
+.portfolio-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 32px;
+}
+
+/* 별 이미지 크기 */
+.portfolio-star {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    display: block;
+}
+
+/* 별 버튼 */
+.representative-btn {
+    width: 36px;
+    height: 36px;
+    padding: 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.representative-btn .portfolio-star {
+    width: 26px;
+    height: 26px;
+}
+
+.grid.cols2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.portfolio-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.portfolio-star {
+    display: block;
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+/* 프로젝트 및 매칭 관리 버튼 테두리 제거 */
+.mypage-sidebar button.status {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+/* 마우스를 올렸을 때 */
+.mypage-sidebar button.status:hover {
+    background-color: #F7F5F2;
+    border-radius: 6px;
+}
+
+
+/* ==============================
+   포트폴리오 카드 추가 스타일
+============================== */
+
+.portfolio-card {
+    position: relative;
+}
+
+/* 상단 공개 여부, 대표 태그, 별 */
+.portfolio-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    min-height: 36px;
+}
+
+.portfolio-card-status {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* 공개 여부 */
+.visibility-tag {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5px 10px;
+    border-radius: 20px;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.visibility-tag.public {
+    background: #EDF4EE;
+    color: #537459;
+}
+
+.visibility-tag.private {
+    background: #F1EFED;
+    color: #81786F;
+}
+
+/* 대표 별 */
+.portfolio-card .representative-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 36px;
+    height: 36px;
+    padding: 5px;
+
+    flex-shrink: 0;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+}
+
+.portfolio-card .representative-btn:hover {
+    background: #F7F0F2;
+}
+
+.portfolio-card .portfolio-star {
+    display: block;
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+/* 포트폴리오 제목 클릭 */
+.portfolio-card .portfolio-title a {
+    color: #171717;
+    text-decoration: none;
+    font: inherit;
+}
+
+.portfolio-card .portfolio-title a:hover {
+    color: #570C28;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* 포트폴리오 카드 하단 */
+.portfolio-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* 수정하기 */
+.portfolio-card .portfolio-edit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 39px;
+    padding: 10px 15px;
+
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    border-radius: 9px;
+
+    color: #570C28;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.portfolio-card .portfolio-edit-btn:hover {
+    background: #F7F5F2;
+}
+
+/* 삭제하기 */
+.portfolio-delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 39px;
+    padding: 10px 15px;
+
+    background: #FFFFFF;
+    border: 1px solid #E5C6CD;
+    border-radius: 9px;
+
+    color: #A33A49;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.portfolio-delete-btn:hover {
+    background: #FFF1F2;
+}
+
+/* 포트폴리오 작성 버튼 */
+.portfolio-create-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 14px;
+    min-height: 40px;
+
+    background: #570C28;
+    border: 1px solid #570C28;
+    border-radius: 9px;
+
+    color: #FFFFFF;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.portfolio-create-btn:hover {
+    background: #720F35;
+}
+
+/* 프로필 수정 링크를 버튼처럼 */
+a.profile-edit-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* ==============================
+   오른쪽 계정 관리 버튼
+============================== */
+
+.mypage-account-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    min-height: 43px;
+    padding: 10px 14px;
+
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    border-radius: 9px;
+
+    color: #570C28;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.mypage-account-link:hover {
+    background: #F7F5F2;
+}
+
+.mypage-account-link.danger {
+    color: #A33A49;
+}
+
+.mypage-account-link.danger:hover {
+    background: #FFF1F2;
+    border-color: #E5C6CD;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+    .portfolio-card-actions {
+        gap: 8px;
+    }
+
+    .portfolio-create-btn {
+        padding: 9px 11px;
+        font-size: 12px;
+    }
+
+    .portfolio-card .portfolio-edit-btn,
+    .portfolio-delete-btn {
+        padding: 9px 12px;
+    }
+}
+
+
+/* ==============================
+   업적 배지
+============================== */
+
+/* 기존 프로필 레이아웃과 분리 */
+.profile-item.badge-profile-item {
+    display: block;
+    width: 100%;
+}
+
+/* 배지 3개 가로 배치 */
+.profile-item .profile-badges {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+
+    width: 100%;
+    margin-top: 16px;
+}
+
+/* 개별 배지: 이름 → 이미지 → 횟수 */
+.achievement-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 9px;
+    min-width: 0;
+    padding: 14px 8px;
+
+    border: 1px solid #EAE4E0;
+    border-radius: 12px;
+    background: #FFFEFD;
+
+    text-align: center;
+}
+
+/* 배지 이름 */
+.achievement-name {
+    color: #570C28;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+/* 이미지 공간 */
+.achievement-image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 108px;
+}
+
+/* 배지 PNG */
+.achievement-image {
+    display: block;
+    width: 104px;
+    height: 104px;
+    max-width: 100%;
+
+    object-fit: contain;
+    transition:
+        filter 0.25s ease,
+        transform 0.25s ease;
+}
+
+/* 아직 1단계 미달성: 회색 */
+.achievement-badge.is-locked .achievement-image {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+/* 달성된 배지 */
+.achievement-badge.is-unlocked .achievement-image {
+    filter: none;
+    opacity: 1;
+}
+
+/* 달성 횟수 */
+.achievement-count {
+    color: #570C28;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* 미달성 횟수 */
+.achievement-badge.is-locked .achievement-count {
+    color: #928A85;
+}
+
+/* ==============================
+   UI 테스트 패널
+============================== */
+
+.badge-test-panel {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+
+    background: #F7F5F2;
+    border: 1px dashed #DED8D2;
+    border-radius: 10px;
+}
+
+.badge-test-title {
+    margin: 0 0 12px;
+    color: #81786F;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-test-controls {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.badge-test-controls label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    color: #81786F;
+    font-size: 11px;
+}
+
+.badge-test-controls select {
+    width: 100%;
+    min-width: 0;
+    padding: 8px;
+
+    border: 1px solid #DED8D2;
+    border-radius: 7px;
+    background: #FFFFFF;
+
+    color: #171717;
+    font-size: 12px;
+}
+
+/* 작은 화면 */
+@media (max-width: 600px) {
+
+    .profile-item .profile-badges {
+        gap: 6px;
+    }
+
+    .achievement-badge {
+        padding: 10px 4px;
+    }
+
+    .achievement-name {
+        font-size: 11px;
+    }
+
+    .achievement-image-box {
+        height: 75px;
+    }
+
+    .achievement-image {
+        width: 72px;
+        height: 72px;
+    }
+
+    .achievement-count {
+        font-size: 11px;
+    }
+
+    .badge-test-controls {
+        grid-template-columns: 1fr;
+    }
+}
+
+.achievement-badge.is-locked .achievement-image {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.achievement-badge.is-unlocked .achievement-image {
+    filter: none;
+    opacity: 1;
+}
+
+.avatar {
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.profile-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
