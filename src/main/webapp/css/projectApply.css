@@ -1,0 +1,281 @@
+
+/* ===============================
+   프로젝트 지원 페이지
+=============================== */
+
+.project-apply-main {
+    min-height: calc(100vh - 170px);
+    padding: 44px 24px 64px;
+    background: #F7F5F2;
+}
+
+.project-apply-main * {
+    box-sizing: border-box;
+}
+
+.project-apply-container {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* 페이지 제목 */
+
+.project-apply-heading {
+    margin-bottom: 22px;
+}
+
+.project-apply-eyebrow {
+    display: block;
+    margin-bottom: 14px;
+    color: #570C28;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.project-apply-heading h1 {
+    margin: 0 0 18px;
+    color: #171717;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.project-apply-heading p {
+    margin: 0;
+    color: #81786F;
+    font-size: 14px;
+}
+
+/* 지원 폼 */
+
+.project-apply-card {
+    display: flex;
+    flex-direction: column;
+    gap: 27px;
+
+    padding: 32px 24px;
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    border-radius: 16px;
+}
+
+.project-apply-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.project-apply-field > label {
+    color: #171717;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* 포트폴리오 선택 */
+
+.project-apply-field select {
+    width: 100%;
+    height: 48px;
+    padding: 0 14px;
+
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    border-radius: 9px;
+
+    color: #171717;
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.project-apply-field select:focus,
+.project-apply-field textarea:focus {
+    outline: none;
+    border-color: #570C28;
+}
+
+.project-apply-help {
+    margin: 0;
+    color: #81786F;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* 지원 메시지 */
+
+.project-apply-field textarea {
+    width: 100%;
+    min-height: 180px;
+    padding: 15px;
+
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    border-radius: 9px;
+
+    color: #171717;
+    font: inherit;
+    font-size: 14px;
+    line-height: 1.7;
+
+    resize: vertical;
+}
+
+.project-apply-field textarea::placeholder {
+    color: #A39B96;
+}
+
+.message-counter {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+
+    color: #81786F;
+    font-size: 12px;
+}
+
+/* 하단 버튼 */
+
+.project-apply-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+.apply-submit-btn,
+.apply-cancel-btn {
+    min-height: 44px;
+    padding: 12px 20px;
+
+    border-radius: 9px;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.apply-submit-btn {
+    background: #570C28;
+    border: 1px solid #570C28;
+    color: #FFFFFF;
+}
+
+.apply-submit-btn:hover {
+    background: #720F35;
+}
+
+.apply-cancel-btn {
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    color: #570C28;
+}
+
+.apply-cancel-btn:hover {
+    background: #F7F5F2;
+}
+
+/* ===============================
+   지원 완료 팝업
+=============================== */
+
+.application-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    background: rgba(23, 23, 23, 0.45);
+}
+
+.application-modal.active {
+    display: flex;
+}
+
+.application-modal-card {
+    width: 100%;
+    max-width: 390px;
+    padding: 34px 28px;
+
+    background: #FFFFFF;
+    border: 1px solid #DED8D2;
+    border-radius: 18px;
+
+    text-align: center;
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.12);
+}
+
+.modal-success-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 62px;
+    height: 62px;
+    margin: 0 auto 20px;
+
+    background: #F2E7EB;
+    border-radius: 50%;
+
+    color: #570C28;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.application-modal-card h2 {
+    margin: 0 0 12px;
+    color: #171717;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.application-modal-card p {
+    margin: 0 0 26px;
+    color: #81786F;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.modal-confirm-btn {
+    width: 100%;
+    min-height: 44px;
+    padding: 12px 20px;
+
+    background: #570C28;
+    border: 1px solid #570C28;
+    border-radius: 9px;
+
+    color: #FFFFFF;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.modal-confirm-btn:hover {
+    background: #720F35;
+}
+
+/* 반응형 */
+
+@media (max-width: 600px) {
+    .project-apply-main {
+        padding: 32px 16px 48px;
+    }
+
+    .project-apply-heading h1 {
+        font-size: 27px;
+    }
+
+    .project-apply-card {
+        padding: 24px 18px;
+    }
+
+    .application-modal-card {
+        padding: 28px 20px;
+    }
+}
