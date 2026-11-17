@@ -50,6 +50,6 @@
     <div class="helper-strip">지원자에 대한 수락/거절 결과를 처리하고 보낸 제안의 답변을 확인할 수 있습니다. (현재는 예시 데이터 시연 화면)</div>
   </div></section>
 </main>
-<jsp:include page="footer.jsp" />
+<jsp:include page="../common/footer.jsp" />
 </body>
 </html>
