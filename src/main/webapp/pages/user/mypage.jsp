@@ -421,19 +421,22 @@
 				<h3>내 프로젝트</h3>
 
 				<button type="button" class="status row between"
-					data-go="created-projects">
+					data-go="created-projects"
+					 onclick="location.href='${pageContext.request.contextPath}/pages/project/my-projects.jsp'">
 					<span>생성한 프로젝트</span> <b><c:out
 							value="${projectCounts.created}" default="1" /></b>
 				</button>
 
 				<button type="button" class="status row between"
-					data-go="participating-projects">
+					data-go="participating-projects"
+					onclick="location.href='${pageContext.request.contextPath}/pages/project/my-projects.jsp'">
 					<span>참여중인 프로젝트</span> <b><c:out
 							value="${projectCounts.participating}" default="1" /></b>
 				</button>
 
 				<button type="button" class="status row between"
-					data-go="completed-projects">
+					data-go="completed-projects"
+					onclick="location.href='${pageContext.request.contextPath}/pages/project/my-projects.jsp'">
 					<span>종료된 프로젝트</span> <b><c:out
 							value="${projectCounts.completed}" default="2" /></b>
 				</button>
@@ -445,13 +448,15 @@
 				<h4>프로젝트 운영자</h4>
 
 				<button type="button" class="status row between"
-					data-go="project-applicants">
+					data-go="project-applicants"
+					onclick="location.href='${pageContext.request.contextPath}/pages/matching/matching-leader.jsp'">
 					<span>내 프로젝트 지원자</span> <b><c:out
 							value="${matchingCounts.applicants}" default="1" /></b>
 				</button>
 
 				<button type="button" class="status row between"
-					data-go="sent-proposals">
+					data-go="sent-proposals"
+					onclick="location.href='${pageContext.request.contextPath}/pages/matching/matching-leader.jsp'">
 					<span>보낸 팀원 제안</span> <b><c:out
 							value="${matchingCounts.sentProposals}" default="3" /></b>
 				</button>
@@ -459,13 +464,15 @@
 				<h4>프로젝트 참여자</h4>
 
 				<button type="button" class="status row between"
-					data-go="applied-projects">
+					data-go="applied-projects"
+					onclick="location.href='${pageContext.request.contextPath}/pages/matching/matching-member.jsp'">
 					<span>지원한 프로젝트</span> <b><c:out
 							value="${matchingCounts.appliedProjects}" default="1" /></b>
 				</button>
 
 				<button type="button" class="status row between"
-					data-go="received-proposals">
+					data-go="received-proposals"
+					onclick="location.href='${pageContext.request.contextPath}/pages/matching/matching-member.jsp'">
 					<span>받은 팀원 제안</span> <b><c:out
 							value="${matchingCounts.receivedProposals}" default="2" /></b>
 				</button>

@@ -7,32 +7,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>내 프로젝트 | 팀플 매칭</title>
-  <link rel="stylesheet" href="<%= base %>/assets/css/style.css">
+  <%-- 팀 공통 스타일 + 담당 화면 전용 공통 스타일 --%>
+  <link rel="stylesheet" href="<%= base %>/css/common.css">
+  <link rel="stylesheet" href="<%= base %>/css/matching-pages.css">
   <script src="<%= base %>/assets/js/demo-data.js" defer></script>
 <script src="<%= base %>/assets/js/common.js" defer></script>
 <script src="<%= base %>/assets/js/my-projects.js" defer></script>
 </head>
-<body class="layout-page" >
-<header class="site-header">
-  <a class="brand" href="<%= base %>/mypage.jsp" aria-label="팀플 매칭 마이페이지"><span class="brand-mark">◩</span><span>팀플 매칭</span></a>
-  <nav class="header-nav" aria-label="상단 메뉴">
-    <span class="header-inactive" title="프로젝트 탐색은 다른 팀원이 구현할 화면입니다">프로젝트 탐색</span>
-    <span class="header-inactive" title="팀원 탐색은 다른 팀원이 구현할 화면입니다">팀원 탐색</span>
-    <a href="<%= base %>/mypage.jsp" aria-current="page">내 프로젝트</a>
-  </nav>
-  <div class="account-nav"><span class="avatar" aria-hidden="true">홍</span><span title="로그아웃 기능은 로그인 담당 팀원의 Servlet과 연결 예정">로그아웃</span></div>
-</header>
+<body class="matching-page layout-page">
+<jsp:include page="../common/header.jsp" />
 <main class="workspace">
 <aside class="sidebar" aria-label="내 프로젝트 사이드바">
   <p class="eyebrow">MY WORKSPACE</p>
   <div class="sidebar-section"><h2 class="sidebar-title">내 프로젝트</h2>
-    <a class="sidebar-link" data-side-tab="created" href="<%= base %>/my-projects.jsp?tab=created">생성한 프로젝트</a>
-    <a class="sidebar-link" data-side-tab="joined" href="<%= base %>/my-projects.jsp?tab=joined">참여중 프로젝트</a>
-    <a class="sidebar-link" data-side-tab="completed" href="<%= base %>/my-projects.jsp?tab=completed">종료된 프로젝트</a>
+    <a class="sidebar-link" data-side-tab="created" href="<%= base %>/pages/project/my-projects.jsp?tab=created">생성한 프로젝트</a>
+    <a class="sidebar-link" data-side-tab="joined" href="<%= base %>/pages/project/my-projects.jsp?tab=joined">참여중 프로젝트</a>
+    <a class="sidebar-link" data-side-tab="completed" href="<%= base %>/pages/project/my-projects.jsp?tab=completed">종료된 프로젝트</a>
   </div>
   <div class="sidebar-section"><h2 class="sidebar-title">매칭관리</h2>
-    <a class="sidebar-link" href="<%= base %>/matching-leader.jsp">프로젝트 운영자</a>
-    <a class="sidebar-link" href="<%= base %>/matching-member.jsp">프로젝트 참여자</a>
+    <a class="sidebar-link" href="<%= base %>/pages/matching/matching-leader.jsp">프로젝트 운영자</a>
+    <a class="sidebar-link" href="<%= base %>/pages/matching/matching-member.jsp">프로젝트 참여자</a>
   </div>
 </aside>
   <section class="workspace-main"><div class="workspace-inner">

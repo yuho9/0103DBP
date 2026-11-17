@@ -1,0 +1,522 @@
+@charset "UTF-8";
+
+/* 네 매칭관리 화면 전용 스타일.
+   팀 공통 CSS(common.css)는 수정하지 않고 기존 색상 변수를 재사용합니다. */
+.matching-page {
+    background: var(--cream, #F7F5F2);
+    color: var(--text, #171717);
+}
+
+.matching-page .workspace {
+    display: grid;
+    grid-template-columns: 248px minmax(0, 1fr);
+    align-items: start;
+    gap: 24px;
+    width: min(1200px, calc(100% - 40px));
+    margin: 36px auto 64px;
+    flex: 1 0 auto;
+}
+
+.matching-page .sidebar,
+.matching-page .workspace-main {
+    background: #fff;
+    border: 1px solid var(--border, #DED8D2);
+    border-radius: 14px;
+}
+
+.matching-page .sidebar {
+    padding: 24px 18px;
+}
+
+.matching-page .workspace-main {
+    min-width: 0;
+}
+
+.matching-page .workspace-inner {
+    padding: 34px 36px 42px;
+}
+
+.matching-page .eyebrow {
+    display: inline-block;
+    color: var(--burgundy, #570C28);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.matching-page .sidebar > .eyebrow {
+    margin: 0 8px 18px;
+}
+
+.matching-page .sidebar-section + .sidebar-section {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border, #DED8D2);
+}
+
+.matching-page .sidebar-title {
+    margin: 0 8px 12px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.matching-page .sidebar-subtitle {
+    margin: 20px 8px 8px;
+    color: var(--muted, #81786F);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.matching-page .sidebar-link {
+    display: block;
+    padding: 11px 12px;
+    border-radius: 8px;
+    color: #5D5752;
+    font-size: 13px;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.matching-page .sidebar-link:hover,
+.matching-page .sidebar-link.active,
+.matching-page .sidebar-link.is-active,
+.matching-page .sidebar-link[aria-current="page"] {
+    background: #F4EBEE;
+    color: var(--burgundy, #570C28);
+    font-weight: 700;
+}
+
+.matching-page .workspace-intro h1 {
+    margin: 6px 0 8px;
+    color: var(--text, #171717);
+    font-size: 32px;
+    letter-spacing: -0.8px;
+}
+
+.matching-page .workspace-intro p {
+    margin: 0;
+    color: var(--muted, #81786F);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.matching-page .tabs {
+    display: flex;
+    gap: 26px;
+    margin-top: 30px;
+    border-bottom: 1px solid var(--border, #DED8D2);
+}
+
+.matching-page .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: -1px;
+    padding: 12px 1px;
+    border: none;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: var(--muted, #81786F);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.matching-page .tab:hover,
+.matching-page .tab.active,
+.matching-page .tab.is-active,
+.matching-page .tab[aria-selected="true"] {
+    color: var(--burgundy, #570C28);
+    border-bottom-color: var(--burgundy, #570C28);
+}
+
+.matching-page .tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    padding: 2px 6px;
+    border-radius: 100px;
+    background: #F2EDEB;
+    color: var(--burgundy, #570C28);
+    font-size: 11px;
+}
+
+.matching-page .panel-list {
+    display: grid;
+    gap: 14px;
+    min-height: 180px;
+    padding-top: 24px;
+}
+
+/* 기존 matching.js가 목록에 삽입하는 카드/버튼에도 팀 색감을 적용 */
+.matching-page .panel-list > * {
+    min-width: 0;
+}
+
+.matching-page .panel-list .card,
+.matching-page .panel-list .panel,
+.matching-page .panel-list .list-card,
+.matching-page .panel-list .list-item {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid var(--border, #DED8D2);
+    border-radius: 12px;
+}
+
+.matching-page .panel-list button,
+.matching-page .workspace-main button:not(.tab) {
+    border: 1px solid var(--border, #DED8D2);
+    border-radius: 9px;
+    padding: 9px 14px;
+    background: #fff;
+    color: var(--burgundy, #570C28);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.matching-page .panel-list button:hover,
+.matching-page .workspace-main button:not(.tab):hover {
+    background: var(--cream, #F7F5F2);
+}
+
+.matching-page .helper-strip {
+    padding: 15px 18px;
+    margin-top: 20px;
+    border: 1px solid #E7DDE0;
+    border-radius: 10px;
+    background: #F9F4F5;
+    color: #77686E;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* 앞서 만든 footer.jsp가 .page-footer를 쓸 경우에도 공통 푸터와 통일 */
+.matching-page .page-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 26px 64px;
+    background: var(--cream, #F7F5F2);
+    border-top: 1px solid var(--border, #DED8D2);
+    color: var(--muted, #81786F);
+    font-size: 12px;
+}
+
+@media (max-width: 900px) {
+    .matching-page .workspace {
+        grid-template-columns: 210px minmax(0, 1fr);
+        gap: 16px;
+        width: calc(100% - 32px);
+    }
+    .matching-page .workspace-inner { padding: 26px 24px; }
+}
+
+@media (max-width: 680px) {
+    .matching-page .workspace {
+        grid-template-columns: 1fr;
+        margin: 18px auto 40px;
+    }
+    .matching-page .sidebar { padding: 18px; }
+    .matching-page .workspace-inner { padding: 22px 18px 30px; }
+    .matching-page .tabs { gap: 16px; overflow-x: auto; }
+    .matching-page .tab { white-space: nowrap; font-size: 12px; }
+    .matching-page .page-footer { padding: 22px 20px; }
+}
+
+/* ============================================================
+   프로젝트 / 매칭 목록 카드
+   my-projects.js, matching.js가 동적으로 생성하는 클래스에 맞춘 스타일
+   기존 팀 공통 CSS와 JS는 수정하지 않음
+   ============================================================ */
+.matching-page .panel-list .data-card {
+    min-width: 0;
+    padding: 24px 26px;
+    background: var(--white, #FFFFFF);
+    border: 1px solid var(--border, #DED8D2);
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(36, 21, 26, 0.035);
+}
+
+.matching-page .panel-list .card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+/* 상태 텍스트: common.js의 stat() 결과를 포함하는 첫 요소 */
+.matching-page .panel-list .card-head > :first-child {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 27px;
+    padding: 5px 10px;
+    border-radius: 100px;
+    background: #F5ECEF;
+    color: var(--burgundy, #570C28);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+.matching-page .panel-list .small,
+.matching-page .panel-list .text-muted,
+.matching-page .panel-list .card-footnote {
+    color: var(--muted, #81786F);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.matching-page .panel-list .project-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.matching-page .panel-list .data-card h2 {
+    margin: 0 0 10px;
+    color: var(--text, #171717);
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: -0.4px;
+    overflow-wrap: anywhere;
+}
+
+.matching-page .panel-list .project-title-row h2 {
+    margin-bottom: 0;
+}
+
+.matching-page .panel-list .leader-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 9px;
+    border-radius: 100px;
+    background: #F5ECEF;
+    color: var(--burgundy, #570C28);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.matching-page .panel-list .card-subtext,
+.matching-page .panel-list .card-meta {
+    margin: 0 0 14px;
+    color: #5F5754;
+    font-size: 14px;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+}
+
+.matching-page .panel-list .card-footnote {
+    margin: 12px 0 0;
+}
+
+.matching-page .panel-list .card-detail {
+    margin-top: 14px;
+    padding: 12px 14px;
+    background: #FAF6F7;
+    border: 1px solid #EEE2E5;
+    border-radius: 9px;
+    color: #75686D;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+/* 내 프로젝트 - 진행률 */
+.matching-page .panel-list .progress-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 18px;
+    color: #5F5754;
+    font-size: 13px;
+}
+
+.matching-page .panel-list .progress-row strong {
+    color: var(--burgundy, #570C28);
+    font-weight: 700;
+}
+
+.matching-page .panel-list .progress-track {
+    height: 8px;
+    margin-top: 9px;
+    overflow: hidden;
+    border-radius: 100px;
+    background: #EDE7E5;
+}
+
+.matching-page .panel-list .progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: var(--burgundy, #570C28);
+    transition: width 0.2s ease;
+}
+
+/* 매칭관리 - 왼쪽 신청 내용 / 오른쪽 사용자 정보 */
+.matching-page .panel-list .matching-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(185px, 230px);
+    gap: 22px;
+    align-items: start;
+}
+
+.matching-page .panel-list .matching-card > * {
+    min-width: 0;
+}
+
+.matching-page .panel-list .matching-person {
+    padding: 16px;
+    border: 1px solid #EDE6E3;
+    border-radius: 10px;
+    background: #FAF8F6;
+}
+
+.matching-page .panel-list .matching-person h3 {
+    margin: 0 0 11px;
+    color: var(--burgundy, #570C28);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.matching-page .panel-list .matching-person p {
+    margin: 0 0 8px;
+    color: #675F5B;
+    font-size: 12px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+}
+
+.matching-page .panel-list .matching-person p:last-child {
+    margin-bottom: 0;
+}
+
+.matching-page .panel-list .matching-person .person-name {
+    color: var(--text, #171717);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.matching-page .panel-list .card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+/* 위쪽의 일반 버튼 스타일보다 명확히 구체적인 선택자로 재정의 */
+.matching-page .panel-list .card-actions .btn.primary {
+    background: var(--burgundy, #570C28);
+    border-color: var(--burgundy, #570C28);
+    color: #FFFFFF;
+}
+
+.matching-page .panel-list .card-actions .btn.primary:hover {
+    background: var(--burgundy-hover, #75183C);
+    border-color: var(--burgundy-hover, #75183C);
+}
+
+.matching-page .panel-list .card-actions .btn.danger {
+    color: #A33A49;
+    border-color: #E5C6CD;
+    background: #FFFFFF;
+}
+
+.matching-page .panel-list .card-actions .btn.danger:hover {
+    background: #FFF1F2;
+}
+
+.matching-page .panel-list .status-note {
+    margin: 13px 0 0;
+    color: var(--muted, #81786F);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* 데이터가 0개일 때 */
+.matching-page .panel-list .empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    min-height: 165px;
+    padding: 30px 20px;
+    border: 1px dashed var(--border, #DED8D2);
+    border-radius: 12px;
+    background: #FCFBFA;
+    text-align: center;
+}
+
+.matching-page .panel-list .empty strong {
+    color: var(--text, #171717);
+    font-size: 15px;
+}
+
+.matching-page .panel-list .empty span {
+    color: var(--muted, #81786F);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* 내 프로젝트 - 시연용 상태 변경 영역 */
+.matching-page .demo-tools {
+    margin-top: 18px;
+    padding: 16px 18px;
+    background: #FFFFFF;
+    border: 1px solid var(--border, #DED8D2);
+    border-radius: 12px;
+}
+
+.matching-page .demo-tools summary {
+    color: var(--burgundy, #570C28);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.matching-page .demo-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.matching-page .demo-actions select {
+    max-width: 100%;
+    min-width: 180px;
+    min-height: 37px;
+    padding: 8px 10px;
+    border: 1px solid var(--border, #DED8D2);
+    border-radius: 8px;
+    background: #FFFFFF;
+    font-size: 13px;
+}
+
+.matching-page .demo-actions button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+    .matching-page .panel-list .matching-card {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 680px) {
+    .matching-page .panel-list .data-card { padding: 18px; }
+    .matching-page .panel-list .data-card h2 { font-size: 17px; }
+    .matching-page .panel-list .matching-person { padding: 14px; }
+    .matching-page .demo-actions select { width: 100%; min-width: 0; }
+}
