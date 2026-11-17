@@ -50,6 +50,6 @@
     <div class="helper-strip">프로젝트 지원 결과를 확인하고 받은 팀원 제안에 수락 또는 거절로 답변할 수 있습니다. (현재는 예시 데이터 시연 화면)</div>
   </div></section>
 </main>
-<jsp:include page="footer.jsp" />
+<jsp:include page="../common/footer.jsp" />
 </body>
 </html>
