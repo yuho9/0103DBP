@@ -22,13 +22,13 @@
 
         <!-- 프로젝트 탐색 -->
         <a class="header-nav-link"
-           href="${pageContext.request.contextPath}/pages/project/projectList.jsp">
+           href="${pageContext.request.contextPath}/pages/project/project-list.jsp">
             프로젝트 탐색
         </a>
 
         <!-- 팀원 탐색 -->
         <a class="header-nav-link"
-           href="${pageContext.request.contextPath}/pages/user/teamSearch.jsp">
+           href="${pageContext.request.contextPath}/pages/portfolio/member-list.jsp">
             팀원 탐색
         </a>
 

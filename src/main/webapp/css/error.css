@@ -1,0 +1,96 @@
+:root {
+    --primary: #5A0C26;
+    --accent:  #7A1C34;
+    --taupe:   #B7B0A8;
+    --sand:   #EDEAE4;
+    --ink:     #1A1A1A;
+    --bg:      #F7F5F1;
+    --gray:   #7A726B;
+    --line:    #E3DED6;
+}
+* { margin: 0; padding: 0; }
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+}
+
+/* ===== 본문 ===== */
+main {
+    flex: 1;
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 44px 24px 72px;
+}
+.eyebrow {
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+}
+h1 { font-size: 36px; font-weight: 900; letter-spacing: -1px; line-height: 1.3; }
+.subtitle { margin-top: 26px; font-size: 14px; color: var(--gray); }
+
+.card {
+    margin-top: 26px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 40px 24px 32px;
+}
+.card-top {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 0 0 28px;
+}
+.illust { flex: 0 0 150px; }
+.code {
+    font-size: 64px; font-weight: 900; line-height: 1;
+    color: var(--primary); letter-spacing: -2px;
+}
+.code small {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 2.5px; color: var(--taupe);
+}
+.card-title { margin-top: 16px; font-size: 20px; font-weight: 700; }
+.card-desc { margin-top: 8px; font-size: 14px; line-height: 1.7; color: var(--gray); }
+
+.notice {
+    background: var(--sand);
+    border-radius: 10px;
+    padding: 18px 16px;
+    font-size: 13px; line-height: 1.8;
+}
+.notice .path { margin-top: 4px; color: var(--gray); word-break: break-all; }
+.debug {
+    margin-top: 12px;
+    background: #1A1A1A; color: #EDEAE4;
+    border-radius: 10px; padding: 14px 16px;
+    font: 12px/1.7 Consolas, monospace;
+    white-space: pre-wrap; word-break: break-all;
+}
+
+.actions { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+.btn {
+    height: 44px; padding: 0 20px;
+    border-radius: 9px;
+    font-family: inherit; font-size: 14px; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center;
+    cursor: pointer;
+}
+.btn-primary { background: var(--primary); color: #fff; border: 1px solid var(--primary); }
+.btn-primary:hover { background: var(--accent); }
+.btn-outline { background: #fff; color: var(--primary); border: 1px solid var(--line); }
+.btn-outline:hover { background: var(--sand); }
+
+@media (max-width: 640px) {    
+    h1 { font-size: 28px; }
+    .card-top { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
