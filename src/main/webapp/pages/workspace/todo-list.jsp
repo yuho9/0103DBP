@@ -1,6 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>팀플 매칭</title><link rel="stylesheet" href="${pageContext.request.contextPath}/css/workspace.css"></head><body>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>팀플 매칭</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/workspace.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+</head>
+<body>
 <%@ include file="/pages/common/header.jsp" %>
 <div class="workspace"><%@ include file="/pages/workspace/workspace-sidebar.jsp" %><main class="content"><small class="eyebrow">PLAN TOGETHER</small><h1>일정 관리</h1><p class="muted">팀원들과 일정을 공유하고 함께 가능한 시간을 확인하세요.</p>
 <div class="section-head">
