@@ -1,103 +1,116 @@
-<%@ page contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>회원가입 | CampusMatching</title>
 
-    <!-- 공통 CSS -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/common.css">
 
-    <!-- 회원가입 CSS -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/registerForm.css">
 
-  <script>
-    function userCreate() {
-    	if (form.userId.value == "") {
-    		alert("사용자 ID를 입력하십시오.");
-    		form.userId.focus();
-    		return false;
-    	} 
-    	if (form.password.value == "") {
-    		alert("비밀번호를 입력하십시오.");
-    		form.password.focus();
-    		return false;
-    	}
-    	if (form.password.value != form.password2.value) {
-    		alert("비밀번호가 일치하지 않습니다.");
-    		form.password2.focus();
-    		return false;
-    	}
-    	if (form.name.value == "") {
-    		alert("이름을 입력하십시오.");
-    		form.name.focus();
-    		return false;
-    	}
-    	var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-    	if(emailExp.test(form.email.value)==false) {
-    		alert("이메일 형식이 올바르지 않습니다.");
-    		form.email.focus();
-    		return false;
-    	}
-    	var phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
-    	if(phoneExp.test(form.phone.value)==false) {
-    		alert("전화번호 형식이 올바르지 않습니다.");
-    		form.phone.focus();
-    		return false;
-    	}
-    	form.submit();
-    }
-    
-  </script>
-</head>
-<body>
+    <script>
+        function userCreate() {
+            const form = document.forms["form"];
+            const loginId = form.elements["loginId"];
+            const password = form.elements["password"];
+            const passwordConfirm = form.elements["passwordConfirm"];
+            const userName = form.elements["userName"];
+            const email = form.elements["email"];
+            const phone = form.elements["phone"];
+            const errorElement = document.getElementById("registerError");
 
-    <%-- 공통 헤더 --%>
+            function showError(message, element) {
+                errorElement.textContent = message;
+                element.focus();
+                return false;
+            }
+
+            if (userName.value.trim() === "") {
+                return showError("이름을 입력해 주세요.", userName);
+            }
+
+            if (loginId.value.trim() === "") {
+                return showError("아이디를 입력해 주세요.", loginId);
+            }
+
+            if (email.value.trim() === "") {
+                return showError("이메일을 입력해 주세요.", email);
+            }
+
+            const emailExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailExp.test(email.value.trim())) {
+                return showError("이메일 형식이 올바르지 않습니다.", email);
+            }
+
+            const phoneExp = /^\d{2,3}-\d{3,4}-\d{4}$/;
+
+            if (phone.value.trim() !== "" &&
+                    !phoneExp.test(phone.value.trim())) {
+                return showError("전화번호 형식이 올바르지 않습니다.", phone);
+            }
+
+            if (password.value === "") {
+                return showError("비밀번호를 입력해 주세요.", password);
+            }
+
+            if (password.value !== passwordConfirm.value) {
+                return showError("비밀번호가 일치하지 않습니다.", passwordConfirm);
+            }
+
+            errorElement.textContent = "";
+            return true;
+        }
+    </script>
+</head>
+
+<body>
     <jsp:include page="../common/header.jsp" />
 
     <main class="register-main">
-
         <div class="register-container">
 
-            <%-- 회원가입 제목 --%>
             <div class="register-heading">
                 <span class="register-label">JOIN US</span>
                 <h1>회원가입</h1>
             </div>
 
-            <%-- 회원가입 입력 폼 --%>
             <form name="form"
                   class="register-form"
-                  method="POST"
-                  action="#"
-                  onsubmit="return userCreate(event);">
+                  method="post"
+                  action="${pageContext.request.contextPath}/registerForm"
+                  onsubmit="return userCreate();"
+                  novalidate>
 
                 <div class="register-fields">
 
                     <div class="register-field">
-                        <label for="name">이름</label>
+                        <label for="userName">이름</label>
                         <input type="text"
-                               id="name"
-                               name="name"
+                               id="userName"
+                               name="userName"
                                placeholder="이름 입력"
-                               autocomplete="name">
+                               autocomplete="name"
+                               maxlength="100"
+                               required>
                     </div>
 
                     <div class="register-field">
-                        <label for="userId">아이디</label>
+                        <label for="loginId">아이디</label>
                         <input type="text"
-                               id="userId"
-                               name="userId"
+                               id="loginId"
+                               name="loginId"
                                placeholder="아이디 입력"
-                               autocomplete="username">
+                               autocomplete="username"
+                               maxlength="50"
+                               required>
                     </div>
 
                     <div class="register-field">
@@ -106,7 +119,9 @@
                                id="email"
                                name="email"
                                placeholder="이메일 입력"
-                               autocomplete="email">
+                               autocomplete="email"
+                               maxlength="255"
+                               required>
                     </div>
 
                     <div class="register-field">
@@ -115,7 +130,8 @@
                                id="phone"
                                name="phone"
                                placeholder="010-1234-5678"
-                               autocomplete="tel">
+                               autocomplete="tel"
+                               maxlength="20">
                     </div>
 
                     <div class="register-field">
@@ -124,19 +140,23 @@
                                id="password"
                                name="password"
                                placeholder="비밀번호 입력"
-                               autocomplete="new-password">
+                               autocomplete="new-password"
+                               required>
                     </div>
 
                     <div class="register-field">
-                        <label for="password2">비밀번호 확인</label>
+                        <label for="passwordConfirm">비밀번호 확인</label>
                         <input type="password"
-                               id="password2"
-                               name="password2"
+                               id="passwordConfirm"
+                               name="passwordConfirm"
                                placeholder="비밀번호 확인 입력"
-                               autocomplete="new-password">
+                               autocomplete="new-password"
+                               required>
                     </div>
 
                 </div>
+
+                <p id="registerError" class="register-error">${registerError}</p>
 
                 <div class="register-buttons">
                     <button type="submit">
@@ -145,13 +165,9 @@
                 </div>
 
             </form>
-
         </div>
-
     </main>
 
-    <%-- 공통 푸터 --%>
     <jsp:include page="../common/footer.jsp" />
-
 </body>
 </html>
