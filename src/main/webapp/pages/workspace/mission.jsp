@@ -22,6 +22,6 @@
     <dialog id="mission-editor" class="mission-editor"><form id="mission-editor-form"><h2 id="mission-editor-title">미션 추가</h2><label for="mission-name">미션 내용</label><input id="mission-name" required maxlength="200"><label for="mission-date">마감일</label><input id="mission-date" type="date"><div class="section-head"><button type="button" class="btn secondary" id="mission-cancel">취소</button><button class="btn" type="submit">저장</button></div></form></dialog>
 </main></div>
 <%@ include file="/pages/common/footer.jsp" %>
-<script src="${pageContext.request.contextPath}/js/workspace.js"></script>
-<script src="${pageContext.request.contextPath}/js/mission-list.js?v=7" defer></script>
+<script src="${pageContext.request.contextPath}/assets/js/workspace.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/mission-list.js?v=7" defer></script>
 </body></html>
