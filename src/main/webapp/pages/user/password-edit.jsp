@@ -1,10 +1,9 @@
 
-<%@ page contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,26 +11,20 @@
 
     <title>비밀번호 변경 | CampusMatching</title>
 
-    <!-- 공통 CSS -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/common.css">
 
-    <!-- 비밀번호 변경 CSS -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/password-edit.css">
 </head>
 
 <body>
-
     <jsp:include page="../common/header.jsp" />
 
     <main class="password-edit-main">
-
         <div class="password-edit-container">
 
-            <!-- 페이지 제목 -->
             <div class="password-edit-heading">
-
                 <span class="password-eyebrow">
                     PASSWORD SETTINGS
                 </span>
@@ -41,18 +34,15 @@
                 <p>
                     안전한 계정 관리를 위해 비밀번호를 변경하세요.
                 </p>
-
             </div>
 
-            <!-- 비밀번호 변경 폼 -->
             <form id="passwordEditForm"
                   class="password-edit-card"
                   method="post"
-                  action="${pageContext.request.contextPath}/mypage/password/edit">
+                  action="${pageContext.request.contextPath}/mypage/password/edit"
+                  novalidate>
 
-                <!-- 현재 비밀번호 -->
                 <div class="password-field">
-
                     <label for="currentPassword">
                         현재 비밀번호
                     </label>
@@ -63,12 +53,9 @@
                            placeholder="현재 비밀번호를 입력하세요"
                            autocomplete="current-password"
                            required>
-
                 </div>
 
-                <!-- 새 비밀번호 -->
                 <div class="password-field">
-
                     <label for="newPassword">
                         새 비밀번호
                     </label>
@@ -85,12 +72,9 @@
                         영문, 숫자, 특수문자를 포함하여
                         8자 이상 입력해주세요.
                     </p>
-
                 </div>
 
-                <!-- 새 비밀번호 확인 -->
                 <div class="password-field">
-
                     <label for="confirmPassword">
                         새 비밀번호 확인
                     </label>
@@ -105,12 +89,25 @@
                     <p id="passwordMatchMessage"
                        class="password-match-message"
                        aria-live="polite"></p>
-
                 </div>
 
-                <!-- 하단 버튼 -->
-                <div class="password-edit-buttons">
+                <c:if test="${not empty passwordError}">
+                    <p class="password-server-error" role="alert">
+                        <c:out value="${passwordError}" />
+                    </p>
+                </c:if>
 
+                <c:if test="${not empty successMessage}">
+                    <p class="password-server-success" role="status">
+                        <c:out value="${successMessage}" />
+                    </p>
+                </c:if>
+
+                <p id="passwordClientError"
+                   class="password-server-error"
+                   role="alert"></p>
+
+                <div class="password-edit-buttons">
                     <button type="submit"
                             class="password-save-btn">
                         비밀번호 변경
@@ -120,13 +117,9 @@
                        class="password-cancel-btn">
                         취소
                     </a>
-
                 </div>
-
             </form>
-
         </div>
-
     </main>
 
     <jsp:include page="../common/footer.jsp" />
@@ -147,106 +140,75 @@
         const matchMessage =
             document.getElementById("passwordMatchMessage");
 
-        /* ==========================
-           비밀번호 일치 검사
-        ========================== */
+        const clientError =
+            document.getElementById("passwordClientError");
 
         function checkPasswordMatch() {
-
             if (!confirmPassword.value) {
                 matchMessage.textContent = "";
-                matchMessage.className =
-                    "password-match-message";
+                matchMessage.className = "password-match-message";
                 return;
             }
 
             if (newPassword.value === confirmPassword.value) {
-
-                matchMessage.textContent =
-                    "새 비밀번호가 일치합니다.";
-
-                matchMessage.className =
-                    "password-match-message success";
-
+                matchMessage.textContent = "새 비밀번호가 일치합니다.";
+                matchMessage.className = "password-match-message success";
             } else {
-
-                matchMessage.textContent =
-                    "새 비밀번호가 일치하지 않습니다.";
-
-                matchMessage.className =
-                    "password-match-message error";
+                matchMessage.textContent = "새 비밀번호가 일치하지 않습니다.";
+                matchMessage.className = "password-match-message error";
             }
         }
 
-        newPassword.addEventListener(
-            "input",
-            checkPasswordMatch
-        );
+        newPassword.addEventListener("input", checkPasswordMatch);
+        confirmPassword.addEventListener("input", checkPasswordMatch);
 
-        confirmPassword.addEventListener(
-            "input",
-            checkPasswordMatch
-        );
+        passwordForm.addEventListener("submit", function(event) {
+            const current = currentPassword.value;
+            const next = newPassword.value;
+            const confirm = confirmPassword.value;
 
-        /* ==========================
-           비밀번호 변경 버튼
-        ========================== */
+            clientError.textContent = "";
 
-        passwordForm.addEventListener(
-            "submit",
-            function (event) {
-
-                // 현재는 JSP 화면 테스트 단계
-                // 실제 비밀번호 변경 요청은 보내지 않음
+            function showError(message, element) {
                 event.preventDefault();
-
-                const current = currentPassword.value;
-                const next = newPassword.value;
-                const confirm = confirmPassword.value;
-
-                if (!current || !next || !confirm) {
-                    alert("모든 비밀번호를 입력해주세요.");
-                    return;
-                }
-
-                if (next.length < 8) {
-                    alert("새 비밀번호는 8자 이상이어야 합니다.");
-                    newPassword.focus();
-                    return;
-                }
-
-                const passwordPattern =
-                    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9\s]).{8,}$/;
-
-                if (!passwordPattern.test(next)) {
-                    alert(
-                        "영문, 숫자, 특수문자를 포함하여 " +
-                        "8자 이상 입력해주세요."
-                    );
-                    newPassword.focus();
-                    return;
-                }
-
-                if (current === next) {
-                    alert("현재 비밀번호와 다른 비밀번호를 입력해주세요.");
-                    newPassword.focus();
-                    return;
-                }
-
-                if (next !== confirm) {
-                    alert("새 비밀번호가 일치하지 않습니다.");
-                    confirmPassword.focus();
-                    return;
-                }
-
-                alert(
-                    "입력값 검사가 완료되었습니다.\n" +
-                    "실제 비밀번호 변경은 MVC 연결 후 처리됩니다."
-                );
-
+                clientError.textContent = message;
+                element.focus();
             }
-        );
-    </script>
 
+            if (!current || !next || !confirm) {
+                showError("모든 비밀번호를 입력해 주세요.", currentPassword);
+                return;
+            }
+
+            if (next.length < 8) {
+                showError("새 비밀번호는 8자 이상이어야 합니다.", newPassword);
+                return;
+            }
+
+            const passwordPattern =
+                /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9\s])\S{8,}$/;
+
+            if (!passwordPattern.test(next)) {
+                showError(
+                    "영문, 숫자, 특수문자를 포함하여 8자 이상 입력해 주세요.",
+                    newPassword
+                );
+                return;
+            }
+
+            if (current === next) {
+                showError(
+                    "현재 비밀번호와 다른 비밀번호를 입력해 주세요.",
+                    newPassword
+                );
+                return;
+            }
+
+            if (next !== confirm) {
+                showError("새 비밀번호가 일치하지 않습니다.", confirmPassword);
+                return;
+            }
+        });
+    </script>
 </body>
 </html>

@@ -12,6 +12,10 @@ public class RequestMapping {
         mapping.put("/login", new LoginController());
         mapping.put("/registerForm", new RegisterController());
         mapping.put("/logout", new LogoutController());
+        mapping.put("/mypage/account-edit", new UpdateUserController());
+        mapping.put("/account-edit", new UpdateUserController());
+        mapping.put("/mypage/password/edit", new ChangePasswordController());
+        mapping.put("/mypage/withdraw", new WithdrawController());
     }
 
     public Controller findController(String uri) {
