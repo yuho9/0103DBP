@@ -483,7 +483,7 @@
 
 				<div class="section">
 					<a class="mypage-account-link"
-						href="${pageContext.request.contextPath}/pages/user/account-edit.jsp">
+						href="${pageContext.request.contextPath}/account-edit">
 						회원 정보 수정 </a>
 				</div>
 
@@ -495,7 +495,7 @@
 
 				<div class="section">
 					<a class="mypage-account-link danger"
-						href="${pageContext.request.contextPath}/pages/user/withdraw.jsp">
+						 href="${pageContext.request.contextPath}/mypage/withdraw"">
 						회원 탈퇴 </a>
 				</div>
 
