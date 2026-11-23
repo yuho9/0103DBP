@@ -23,6 +23,9 @@
 hs_err_pid*
 replay_pid*
 
+# Auto-generated manifest
+/src/main/webapp/META-INF/MANIFEST.MF
+
 
 # Maven build output
 target/

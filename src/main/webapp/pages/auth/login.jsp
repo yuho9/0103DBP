@@ -1,57 +1,53 @@
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>로그인 | CampusMatching</title>
 
-    <!-- 공통 CSS -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/common.css">
 
-    <!-- 로그인 페이지 CSS -->
     <link rel="stylesheet"
           href="${pageContext.request.contextPath}/css/login.css">
 
     <script>
         function login() {
             const form = document.forms["form"];
+            const loginId = form.elements["loginId"];
+            const password = form.elements["password"];
+            const errorElement = document.getElementById("loginError");
 
-            if (form.elements["userId"].value.trim() === "") {
-                alert("사용자 ID를 입력하십시오.");
-                form.elements["userId"].focus();
+            if (loginId.value.trim() === "") {
+                errorElement.textContent = "아이디를 입력해 주세요.";
+                loginId.focus();
                 return false;
             }
 
-            if (form.elements["password"].value === "") {
-                alert("비밀번호를 입력하십시오.");
-                form.elements["password"].focus();
+            if (password.value === "") {
+                errorElement.textContent = "비밀번호를 입력해 주세요.";
+                password.focus();
                 return false;
             }
 
-            // MVC 구현 전 임시 동작
-            alert("입력값 검사가 완료되었습니다.");
-            return false;
+            errorElement.textContent = "";
+            return true;
         }
     </script>
 </head>
 
 <body>
-
-    <%-- 공통 헤더 --%>
     <jsp:include page="../common/header.jsp" />
 
     <main class="login-main">
 
-        <%-- 왼쪽: 서비스 소개 영역 --%>
         <section class="auth-art">
-
             <div class="intro-content">
-
                 <span class="intro-label">
                     A GOOD TEAM STARTS HERE
                 </span>
@@ -65,40 +61,33 @@
                     나의 가능성과 팀의 가능성이 만나는 곳.<br>
                     함께 시작하고, 끝까지 완성해요.
                 </p>
-
             </div>
-
         </section>
 
-        <%-- 오른쪽: 로그인 영역 --%>
         <section class="auth-form">
-
             <div class="login-heading">
-
                 <span class="login-label">
                     WELCOME
                 </span>
-
                 <h1>로그인</h1>
-
             </div>
 
-            <%-- 로그인 입력 폼 --%>
             <form name="form"
-                  method="POST"
-                  action="#"
-                  onsubmit="return login();">
+                  method="post"
+                  action="${pageContext.request.contextPath}/login"
+                  onsubmit="return login();"
+                  novalidate>
 
                 <div class="login">
-
                     <div class="form-field">
-                        <label for="userId">아이디</label>
+                        <label for="loginId">아이디</label>
 
                         <input type="text"
-                               name="userId"
-                               id="userId"
+                               name="loginId"
+                               id="loginId"
                                placeholder="아이디를 입력하세요"
-                               autocomplete="username">
+                               autocomplete="username"
+                               required>
                     </div>
 
                     <div class="form-field">
@@ -108,10 +97,12 @@
                                name="password"
                                id="password"
                                placeholder="비밀번호를 입력하세요"
-                               autocomplete="current-password">
+                               autocomplete="current-password"
+                               required>
                     </div>
-
                 </div>
+
+                <p id="loginError" class="login-error"><c:out value="${loginError}" /></p>
 
                 <div class="buttons">
                     <button type="submit">
@@ -121,7 +112,9 @@
 
                 <p class="signup-guide">
                     처음 오셨나요?
-                    <a href="registerForm.jsp">회원가입</a>
+                    <a href="${pageContext.request.contextPath}/registerForm">
+                        회원가입
+                    </a>
                 </p>
 
                 <div class="note">
@@ -130,13 +123,10 @@
                 </div>
 
             </form>
-
         </section>
 
     </main>
 
-    <%-- 공통 푸터 --%>
     <jsp:include page="../common/footer.jsp" />
-
 </body>
 </html>
