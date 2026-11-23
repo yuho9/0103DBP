@@ -29,18 +29,22 @@
 
         <c:choose>
             <c:when test="${not empty sessionScope.userId}">
+
                 <a class="header-nav-link"
-                   href="${pageContext.request.contextPath}/pages/user/mypage.jsp">
+                   href="${pageContext.request.contextPath}/mypage">
                     마이페이지
                 </a>
+
             </c:when>
 
             <c:otherwise>
+
                 <a class="header-nav-link"
                    href="${pageContext.request.contextPath}/login"
                    onclick="return checkMyPageLogin(event);">
                     마이페이지
                 </a>
+
             </c:otherwise>
         </c:choose>
 
@@ -49,11 +53,10 @@
     <div class="header-user-area">
 
         <c:choose>
-
             <c:when test="${not empty sessionScope.userId}">
 
                 <a class="header-profile"
-                   href="${pageContext.request.contextPath}/pages/user/mypage.jsp"
+                   href="${pageContext.request.contextPath}/mypage"
                    aria-label="마이페이지로 이동">
 
                     <c:choose>
@@ -99,7 +102,6 @@
                 </a>
 
             </c:otherwise>
-
         </c:choose>
 
     </div>

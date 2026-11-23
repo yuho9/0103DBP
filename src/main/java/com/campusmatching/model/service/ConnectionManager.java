@@ -1,5 +1,5 @@
 
-package com.campusmatching.model.dao;
+package com.campusmatching.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;

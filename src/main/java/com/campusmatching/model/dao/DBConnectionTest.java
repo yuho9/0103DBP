@@ -3,6 +3,8 @@ package com.campusmatching.model.dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import com.campusmatching.model.service.ConnectionManager;
+
 public class DBConnectionTest {
 
     public static void main(String[] args) {

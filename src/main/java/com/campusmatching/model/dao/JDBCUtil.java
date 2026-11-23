@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.campusmatching.model.service.ConnectionManager;
+
 public class JDBCUtil {
 
     private static final ConnectionManager connMan = new ConnectionManager();

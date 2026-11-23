@@ -55,3 +55,68 @@
 .form-notice {margin:16px 0 0;padding:14px 18px;background:#EEEAE6;border-radius:8px;color:#81786F;font-size:11px}
 @media(max-width:900px) {.portfolio-form-grid {grid-template-columns:repeat(2,minmax(0,1fr))}.form-column:nth-child(2) {grid-column:2;grid-row:1 / span 2}}
 @media(max-width:650px) {.portfolio-form-main {padding:28px 16px 48px}.form-heading h1 {font-size:27px}.owner-card {align-items:flex-start;flex-direction:column}.owner-note {max-width:none;text-align:left}.portfolio-form-grid,.settings-layout {grid-template-columns:1fr}.form-column:nth-child(2) {grid-column:auto;grid-row:auto}.form-card {padding:20px 18px}}
+
+.portfolio-form-main .current-pdf-info {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+}
+
+.portfolio-form-main .current-pdf-file {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    background: #f8f5f5;
+    border: 1px solid #e8dddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.portfolio-form-main .current-pdf-name {
+    display: block;
+    flex: 1;
+    min-width: 0;
+    color: #570c28;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.portfolio-form-main .current-pdf-name:hover {
+    color: #720f35;
+    text-decoration: underline;
+}
+
+.portfolio-form-main .pdf-remove-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    box-shadow: none;
+    color: #a33a49;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.portfolio-form-main .pdf-remove-btn:hover {
+    background: #f2e7eb;
+    color: #570c28;
+}
+
+.portfolio-form-main .pdf-remove-value {
+    display: none;
+}

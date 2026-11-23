@@ -1319,3 +1319,31 @@ a.profile-edit-btn {
     border-radius: 50%;
 }
 
+
+.representative-form {
+    margin: 0;
+    padding: 0;
+}
+
+.representative-form .representative-btn {
+    border: none;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.representative-form .representative-btn:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+.representative-form .portfolio-star {
+    display: block;
+}
+
+.representative-form .representative-btn:not(:disabled):hover {
+    transform: scale(1.1);
+}
