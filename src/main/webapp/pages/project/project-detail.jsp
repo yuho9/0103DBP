@@ -1,22 +1,71 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.List, java.time.LocalDate, java.time.format.DateTimeFormatter, com.campusmatching.model.domain.Project, com.campusmatching.model.domain.Category, com.campusmatching.model.domain.Tag, com.campusmatching.model.domain.ProjectStatus" %>
+<%!
+    private static String esc(String s) {
+        if (s == null) return "";
+        return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;");
+    }
+
+    private static String br(String s) {
+        return esc(s).replace("\r", "").replace("\n", "<br>");
+    }
+    private static String ymd(LocalDate d) { return d == null ? "-" : d.format(DateTimeFormatter.ofPattern("yyyy.MM.dd")); }
+    private static String md(LocalDate d)  { return d == null ? "-" : d.format(DateTimeFormatter.ofPattern("MM.dd")); }
+%>
 <%
     String ctx = request.getContextPath();
-    /*
-     * TODO (기능 연결 시)
-     *  - URL : /projects/detail?projectId=번호
-     *  - DetailProjectController 에서 아래 값을 request.setAttribute 로 넘기고, 샘플 문구를 그 값 출력으로 교체
-     *      project            : ProjectDAO.findById(projectId)       (제목·소개·모집/프로젝트 기간·정원·상태·진행 방식)
-     *      category           : CategoryDAO.findByProjectId(...)     (하위) + findById(parentId) (상위)
-     *      tags               : TagDAO.findByProjectId(...)          (해시태그 = 포지션 + 기술 스택)
-     *      activeMemberCount  : ProjectDAO.countActiveMembers(...)   (참여 인원 "2 / 4명" 의 앞 숫자)
-     *  - 프로젝트가 없으면(project == null) response.sendError(404) → web.xml 의 error-page 가 error.jsp 를 보여줌
-     *  - 지원하기 버튼 상태
-     *      모집 중 + 정원 여유  : 지금처럼 링크 (프로젝트 지원 화면으로)
-     *      모집 마감/정원 마감  : 링크 대신 흐리게(.btn.disabled) "모집이 마감되었어요" 로 표시
-     *      내가 만든 프로젝트   : 지원 버튼 숨기기
-     *      비로그인             : 로그인 화면으로 이동
-     *  - 현재 팀원 목록은 이번 화면에서 뺌 (기획 의견 반영)
-     */
+    String ICON_STAR = ctx + "/assets/star.png";                
+    String ICON_STAR_OUTLINE = ctx + "/assets/star-outline.png"; 
+
+    Project project = (Project) request.getAttribute("project");
+    if (project == null) {             
+        response.sendError(404);
+        return;
+    }
+    Category category = (Category) request.getAttribute("category");
+    Category parentCategory = (Category) request.getAttribute("parentCategory");
+    List<Tag> tags = (List<Tag>) request.getAttribute("tags");
+    Integer activeObj = (Integer) request.getAttribute("activeMemberCount");
+    int activeMemberCount = (activeObj == null) ? 0 : activeObj.intValue();
+    boolean scrapped = Boolean.TRUE.equals(request.getAttribute("scrapped"));
+
+    ProjectStatus st = project.getStatus();
+    String statusText = "모집 중";
+    if (st == ProjectStatus.IN_PROGRESS) statusText = "진행 중";
+    else if (st == ProjectStatus.COMPLETED) statusText = "완료";
+    else if (st == ProjectStatus.FAILED) statusText = "종료";
+
+    String meetingText = "-";
+    if (project.getMeetingType() != null) {
+        String mt = project.getMeetingType().name();
+        if ("ONLINE".equals(mt)) meetingText = "온라인";
+        else if ("OFFLINE".equals(mt)) meetingText = "오프라인";
+        else meetingText = "온·오프라인";
+    }
+
+    String categoryText = "";
+    if (parentCategory != null) categoryText = parentCategory.getName();
+    if (category != null) categoryText = categoryText.isEmpty() ? category.getName() : categoryText + " › " + category.getName();
+
+    StringBuilder positionLine = new StringBuilder();
+    StringBuilder skillLine = new StringBuilder();
+    if (tags != null) {
+        for (Tag t : tags) {
+            if (t.isPosition()) positionLine.append("#").append(esc(t.getName())).append(" ");
+            else skillLine.append("#").append(esc(t.getName())).append(" ");
+        }
+    }
+
+    boolean recruiting = (st == null || st == ProjectStatus.RECRUITING);
+    boolean full = activeMemberCount >= project.getMaxMembers();
+
+    String closedText = "모집이 마감되었어요";
+    if (st == ProjectStatus.IN_PROGRESS) closedText = "이미 진행 중인 프로젝트예요";
+    else if (st == ProjectStatus.COMPLETED || st == ProjectStatus.FAILED) closedText = "종료된 프로젝트예요";
+    else if (full) closedText = "모집 인원이 가득 찼어요";
+    Object loginUid = session.getAttribute("userId");  
+    boolean isOwner = loginUid != null && project.getOwner() != null
+            && String.valueOf(project.getOwner().getUserId()).equals(String.valueOf(loginUid));
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -27,7 +76,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="<%= ctx %>/css/common.css">
     <link rel="stylesheet" href="<%= ctx %>/css/project-detail.css">
 </head>
@@ -36,14 +84,11 @@
 <jsp:include page="/pages/common/header.jsp" />
 
 <main>
-    <!-- 상위 카테고리 / 하위 카테고리 (샘플) -->
-    <p class="eyebrow">프로젝트 / 웹</p>
-    <h1>캠퍼스 생활을 더 편리하게</h1>
-    <p class="subtitle">공강 시간부터 팀플 일정까지, 함께 만드는 캠퍼스 서비스</p>
+    <p class="eyebrow"><%= esc(categoryText.replace(" › ", " / ")) %></p>
+    <h1><%= esc(project.getTitle()) %></h1>
 
     <div class="layout">
 
-        <!-- 왼쪽: 소개 / 모집 정보 -->
         <div class="panel">
             <div class="banner">
                 <div>
@@ -58,57 +103,65 @@
                 <button type="button" class="tab" role="tab" id="tab-info" aria-selected="false" aria-controls="panel-info" data-target="panel-info">모집 정보</button>
             </div>
 
-            <!-- 탭 1) 프로젝트 소개 -->
             <div class="tab-panel" id="panel-intro" role="tabpanel" aria-labelledby="tab-intro">
                 <section>
-                    <h2>어떤 프로젝트인가요?</h2>
-                    <p>학생들이 자주 겪는 일정 조율의 어려움을 해결하는 웹 서비스를 만들어요. 기획부터 구현까지 함께 경험하고 싶은 분을 기다립니다.</p>
+                    <h2>프로젝트 소개</h2>
+                    <p><%= br(project.getDescription()) %></p>
                 </section>
-                <section>
-                    <h2>이렇게 함께해요</h2>
-                    <p>매주 목요일 진행 상황을 공유하고, 각자 맡은 기능을 구현합니다.<br>
-                       완벽한 실력보다 꾸준히 소통하며 완성하는 태도를 중요하게 생각해요.</p>
-                </section>
-                <!-- 해시태그(포지션 + 기술 스택): TagDAO.findByProjectId 결과를 반복 출력. 이름 앞에 # 를 붙여 보여줌 -->
-                <p class="label">해시태그</p>
+                <p class="label">모집 포지션</p>
                 <div class="tags">
-                    <span class="tag">#백엔드</span>
-                    <span class="tag">#프론트엔드</span>
-                    <span class="tag">#Java</span>
-                    <span class="tag">#Oracle</span>
-                    <span class="tag">#JSP</span>
+                    <% boolean hasPos = false;
+                       if (tags != null) { for (Tag t : tags) { if (t.isPosition()) { hasPos = true; %>
+                    <span class="tag">#<%= esc(t.getName()) %></span>
+                    <% } } }
+                       if (!hasPos) { %><span class="tag">등록된 포지션이 없어요</span><% } %>
+                </div>
+                <p class="label">모집 기술</p>
+                <div class="tags">
+                    <% boolean hasSkill = false;
+                       if (tags != null) { for (Tag t : tags) { if (!t.isPosition()) { hasSkill = true; %>
+                    <span class="tag">#<%= esc(t.getName()) %></span>
+                    <% } } }
+                       if (!hasSkill) { %><span class="tag">등록된 기술이 없어요</span><% } %>
                 </div>
             </div>
 
-            <!-- 탭 2) 모집 정보 -->
             <div class="tab-panel" id="panel-info" role="tabpanel" aria-labelledby="tab-info" hidden>
                 <dl class="info">
-                    <div class="info-row"><dt>모집 구분</dt><dd>프로젝트 › 웹</dd></div>
-                    <div class="info-row"><dt>모집 상태</dt><dd>모집 중</dd></div>
-                    <div class="info-row"><dt>모집 기간</dt><dd>2026.11.03 ~ 2026.11.19</dd></div>
-                    <div class="info-row"><dt>프로젝트 기간</dt><dd>2026.11.05 ~ 2026.11.30</dd></div>
-                    <div class="info-row"><dt>진행 방식</dt><dd>온·오프 혼합</dd></div>
-                    <div class="info-row"><dt>모집 인원</dt><dd>팀장 포함 4명 (현재 2명 참여)</dd></div>
-                    <div class="info-row"><dt>해시태그</dt><dd>#백엔드 #프론트엔드 #Java #Oracle #JSP</dd></div>
+                    <div class="info-row"><dt>모집 구분</dt><dd><%= esc(categoryText) %></dd></div>
+                    <div class="info-row"><dt>모집 상태</dt><dd><%= statusText %></dd></div>
+                    <div class="info-row"><dt>모집 기간</dt><dd><%= ymd(project.getRecruitmentStart()) %> ~ <%= ymd(project.getRecruitmentEnd()) %></dd></div>
+                    <div class="info-row"><dt>프로젝트 기간</dt><dd><%= ymd(project.getStartDate()) %> ~ <%= ymd(project.getEndDate()) %></dd></div>
+                    <div class="info-row"><dt>진행 방식</dt><dd><%= meetingText %></dd></div>
+                    <div class="info-row"><dt>모집 인원</dt><dd>팀장 포함 <%= project.getMaxMembers() %>명 (현재 <%= activeMemberCount %>명 참여)</dd></div>
+                    <div class="info-row"><dt>모집 포지션</dt><dd><%= positionLine.length() == 0 ? "-" : positionLine.toString().trim() %></dd></div>
+                    <div class="info-row"><dt>모집 기술</dt><dd><%= skillLine.length() == 0 ? "-" : skillLine.toString().trim() %></dd></div>
                 </dl>
             </div>
         </div>
 
-        <!-- 오른쪽: 요약 + 지원 -->
         <aside class="side">
             <div class="side-card">
-                <span class="pill">모집 중</span>
+                <span class="pill"><%= statusText %></span>
                 <h2>함께할 팀원을 찾아요</h2>
 
-                <div class="meta"><small>모집 기간</small><b>11.03 — 11.19</b></div>
-                <div class="meta"><small>프로젝트 기간</small><b>11.05 — 11.30</b></div>
+                <div class="meta"><small>모집 기간</small><b><%= md(project.getRecruitmentStart()) %> — <%= md(project.getRecruitmentEnd()) %></b></div>
+                <div class="meta"><small>프로젝트 기간</small><b><%= md(project.getStartDate()) %> — <%= md(project.getEndDate()) %></b></div>
 
-                <!-- 참여 인원 = ACTIVE 팀원 수 / 정원 (팀장 포함) -->
-                <p class="members">참여 인원 <b>2 / 4명</b></p>
+                <p class="members">참여 인원 <b><%= activeMemberCount %> / <%= project.getMaxMembers() %>명</b></p>
 
                 <div class="actions">
-                    <!-- 프로젝트 지원 화면 (호연 님 담당). 주소는 확정되면 맞추기 -->
-                    <a class="btn btn-primary" href="<%= ctx %>/projects/apply?projectId=1">프로젝트 지원하기</a>
+                    <% if (isOwner) { %>
+                    <% } else if (recruiting && !full) { %>
+                        <a class="btn btn-primary" href="<%= ctx %>/projects/apply?projectId=<%= project.getProjectId() %>">프로젝트 지원하기</a>
+                    <% } else { %>
+                        <span class="btn btn-primary disabled"><%= closedText %></span>
+                    <% } %>
+                    <form method="post" action="<%= ctx %>/projects/scrap">
+                        <input type="hidden" name="projectId" value="<%= project.getProjectId() %>">
+                        <button type="submit" class="btn btn-outline"><% if (scrapped) { %><img class="bm" src="<%= ICON_STAR %>" alt="" width="16" height="16">스크랩 중<% } else { %><img class="bm" src="<%= ICON_STAR_OUTLINE %>" alt="" width="16" height="16">스크랩<% } %></button>
+                    </form>
+
                     <a class="btn btn-outline" href="<%= ctx %>/projects">목록으로</a>
                 </div>
             </div>
@@ -121,7 +174,6 @@
 
 <script>
 (function () {
-    // 프로젝트 소개 / 모집 정보 탭 전환
     var tabs = document.querySelectorAll('.tab');
     var panels = document.querySelectorAll('.tab-panel');
 

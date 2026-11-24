@@ -138,3 +138,22 @@ details[open] > summary > .chev { transform: rotate(-135deg); margin-top: 4px; }
     .grid { grid-template-columns: 1fr; }
     h1 { font-size: 28px; }
 }
+
+/* ===== 스크랩 별 이미지 (assets/star.png, star-outline.png) ===== */
+.scrap img, .chip-toggle img, .btn .bm { display: block; }
+.btn .bm { margin-right: 6px; }
+.scrap.on { border-color: var(--primary); background: var(--rose); }
+
+/* ===== 상세 필터: 모집 포지션 / 기술 스택 (프로젝트 등록 화면과 같은 구성) ===== */
+.picked-box {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    min-height: 52px; padding: 12px 16px; margin-bottom: 10px;
+    background: #FAF8F5; border: 1px solid var(--line); border-radius: 12px;
+}
+.picked-empty { font-size: 13px; color: var(--gray); }
+.tag-add select.input { flex: 1; min-width: 0; cursor: pointer; }
+.tag-add-2nd { margin-top: 8px; }
+.btn.disabled { opacity: .45; pointer-events: none; }
+.card-actions .btn { flex: 1; }
+.row-label { font-size: 12px; font-weight: 700; color: var(--gray); margin-bottom: 8px; }
+.row + .row { margin-top: 16px; }
