@@ -5,7 +5,6 @@
         if (s == null) return "";
         return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;");
     }
-
     private static String br(String s) {
         return esc(s).replace("\r", "").replace("\n", "<br>");
     }
@@ -15,10 +14,11 @@
 <%
     String ctx = request.getContextPath();
     String ICON_STAR = ctx + "/assets/star.png";                
-    String ICON_STAR_OUTLINE = ctx + "/assets/star-outline.png"; 
+    String ICON_STAR_OUTLINE = ctx + "/assets/star-outline.png";
+
 
     Project project = (Project) request.getAttribute("project");
-    if (project == null) {             
+    if (project == null) {                
         response.sendError(404);
         return;
     }
@@ -63,7 +63,7 @@
     if (st == ProjectStatus.IN_PROGRESS) closedText = "이미 진행 중인 프로젝트예요";
     else if (st == ProjectStatus.COMPLETED || st == ProjectStatus.FAILED) closedText = "종료된 프로젝트예요";
     else if (full) closedText = "모집 인원이 가득 찼어요";
-    Object loginUid = session.getAttribute("userId");  
+    Object loginUid = session.getAttribute("userId");     // TODO: 팀의 로그인 세션 이름에 맞추기
     boolean isOwner = loginUid != null && project.getOwner() != null
             && String.valueOf(project.getOwner().getUserId()).equals(String.valueOf(loginUid));
 %>
@@ -153,10 +153,11 @@
                 <div class="actions">
                     <% if (isOwner) { %>
                     <% } else if (recruiting && !full) { %>
-                        <a class="btn btn-primary" href="<%= ctx %>/projects/apply?projectId=<%= project.getProjectId() %>">프로젝트 지원하기</a>
+                        <a class="btn btn-primary" href="<%= ctx %>/project/apply?projectId=<%= project.getProjectId() %>">프로젝트 지원하기</a>
                     <% } else { %>
                         <span class="btn btn-primary disabled"><%= closedText %></span>
                     <% } %>
+
                     <form method="post" action="<%= ctx %>/projects/scrap">
                         <input type="hidden" name="projectId" value="<%= project.getProjectId() %>">
                         <button type="submit" class="btn btn-outline"><% if (scrapped) { %><img class="bm" src="<%= ICON_STAR %>" alt="" width="16" height="16">스크랩 중<% } else { %><img class="bm" src="<%= ICON_STAR_OUTLINE %>" alt="" width="16" height="16">스크랩<% } %></button>

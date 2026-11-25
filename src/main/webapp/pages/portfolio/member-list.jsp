@@ -8,8 +8,9 @@
 %>
 <%
     String ctx = request.getContextPath();
-    String ICON_STAR = ctx + "/assets/star.png";                
+    String ICON_STAR = ctx + "/assets/star.png";                 
     String ICON_STAR_OUTLINE = ctx + "/assets/star-outline.png";  
+
     List<MemberCard> members = (List<MemberCard>) request.getAttribute("members");
     if (members == null) {
         response.sendRedirect(ctx + "/members");
@@ -163,12 +164,15 @@
             <div class="portfolio"><small>공개 대표 포트폴리오</small><b><%= esc(m.getPortfolioTitle()) %></b></div>
             <% } %>
             <div class="card-actions">
+
                 <% if (m.getPortfolioTitle() != null) { %>
                 <a class="btn btn-outline" href="<%= ctx %>/portfolios/detail?userId=<%= m.getUserId() %>&portfolioIsMain=true&from=members">포트폴리오 보기</a>
                 <% } else { %>
                 <span class="btn btn-outline disabled">공개 포트폴리오가 없어요</span>
                 <% } %>
-                <a class="btn btn-primary" href="<%= ctx %>/proposals/new?receiverId=<%= m.getUserId() %>">팀원 제안</a>
+                <% if (m.getPortfolioId() != null) { %>
+                <a class="btn btn-primary" href="<%= ctx %>/matching/propose?portfolioId=<%= m.getPortfolioId() %>">팀원 제안</a>
+                <% } %>
             </div>
         </article>
         <% } %>
@@ -191,7 +195,7 @@
         filterBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
     filterBtn.addEventListener('click', function () { setFilterOpen(filterAcc.hidden); });
- 
+
     var lastMajor = null;
     document.querySelectorAll('input[name=major]').forEach(function (r) {
         r.addEventListener('click', function () {
@@ -243,7 +247,7 @@
             });
             document.getElementById(o.inputBtn).addEventListener('click', function () { commit(); inp.focus(); });
         }
-        new URLSearchParams(location.search).getAll(o.name).forEach(add);  
+        new URLSearchParams(location.search).getAll(o.name).forEach(add);   
     }
     makePicker({ box: 'posBox', select: 'posSelect', addBtn: 'posAddBtn', name: 'position', max: 8 });
     makePicker({ box: 'skillBox', select: 'tagSelect', addBtn: 'tagSelectAddBtn', input: 'tagInput', inputBtn: 'tagAddBtn', name: 'tag', max: 20 });
@@ -276,7 +280,7 @@
         if (sc) { sc.classList.add('on'); sc.href = location.pathname; }
     }
     updateCount();
-    setFilterOpen(!count.hidden);   
+    setFilterOpen(!count.hidden);  
 })();
 </script>
 

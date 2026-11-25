@@ -42,7 +42,7 @@ public class MemberListController implements Controller {
         cond.setTags(tags);
 
         if ("true".equals(request.getParameter("scrap"))) {
-            if (userId == null) {                     
+            if (userId == null) {                      
                 return "redirect:/login";
             }
             cond.setScrappedByUserId(userId);
@@ -64,14 +64,14 @@ public class MemberListController implements Controller {
             List<MemberCard> members = new ArrayList<>();
             for (MemberSummary m : found) {
                 long uid = m.getUserId();
-                if (userId != null && uid == userId.longValue()) continue;                  
-                if (m.getNickname() == null || m.getNickname().trim().isEmpty()) continue;  
+                if (userId != null && uid == userId.longValue()) continue;                   
+                if (m.getNickname() == null || m.getNickname().trim().isEmpty()) continue;   
                 if (!positions.isEmpty() && !matchesPosition(positions, m.getDesiredPosition())) continue;
                 if (!wantProjects.isEmpty() && !matchesProject(wantProjects, m.getDesiredProject())) continue;
 
                 members.add(new MemberCard(
                         uid, m.getNickname(), m.getDesiredPosition(), m.getDesiredProject(),
-                        m.getPortfolioTitle(), tagDAO.findByUserId(uid), scrappedIds.contains(uid)));
+                        m.getPortfolioTitle(), m.getPortfolioId(), tagDAO.findByUserId(uid), scrappedIds.contains(uid)));
             }
 
             request.setAttribute("members", members);
@@ -125,11 +125,11 @@ public class MemberListController implements Controller {
         for (String w : wanted) {
             if (have.contains(w)) return true;
             String[] subs = SUB_NAMES.get(w);
-            if (subs != null) {                     
+            if (subs != null) {                      
                 for (String sub : subs) {
                     if (have.contains(sub)) return true;
                 }
-            } else {                                 
+            } else {                                
                 for (java.util.Map.Entry<String, String[]> e : SUB_NAMES.entrySet()) {
                     for (String sub : e.getValue()) {
                         if (sub.equals(w) && have.contains(e.getKey())) return true;
