@@ -27,6 +27,11 @@ public class RequestMapping {
         mapping.put("/profile/image", new ProfileImageViewController());
         mapping.put("/projects/new", new ProjectFormController());
         mapping.put("/projects/edit", new ProjectFormController());
+        mapping.put("/projects", new ProjectListController());
+        mapping.put("/projects/detail", new ProjectDetailController());
+        mapping.put("/projects/scrap", new ProjectScrapController());
+        mapping.put("/members", new MemberListController());
+        mapping.put("/members/scrap", new MemberScrapController());
     }
 
     public Controller findController(String uri) {
