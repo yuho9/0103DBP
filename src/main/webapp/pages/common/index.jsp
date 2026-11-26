@@ -2,14 +2,22 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>팀플 매칭</title><link rel="stylesheet" href="${pageContext.request.contextPath}/css/workspace.css">
+	<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>팀플 매칭</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/workspace.css">
 </head>
 <body>
 	<%@ include file="/pages/common/header.jsp" %>
 	<main class="home">
 		<% boolean hasProject = session.getAttribute("loginUserId") != null && request.getAttribute("homeProjectId") != null; %>
 		<% if (!hasProject) { %>
-		<section class="hero"><div><small>FIND YOUR BEST TEAM</small><h1>좋은 팀과,<br>더 좋은 프로젝트를.</h1><p>함께할 사람을 찾고, 나만의 경험을 쌓아보세요.</p><a class="btn light" href="${pageContext.request.contextPath}/pages/project/project-list.jsp">프로젝트 둘러보기 ↗</a> <a class="btn outline" href="${pageContext.request.contextPath}/pages/portfolio/member-list.jsp">팀원 둘러보기</a></div><div class="hero-art" aria-hidden="true">✓</div></section>
+		<section class="hero"><div>
+			<small>FIND YOUR BEST TEAM</small>
+			<h1>좋은 팀과,<br>더 좋은 프로젝트를.</h1>
+			<p>함께할 사람을 찾고, 나만의 경험을 쌓아보세요.</p>
+			<a class="btn light" href="${pageContext.request.contextPath}/pages/project/project-list.jsp">프로젝트 둘러보기 ↗</a> 
+			<a class="btn outline" href="${pageContext.request.contextPath}/pages/portfolio/member-list.jsp">팀원 둘러보기</a></div><div class="hero-art" aria-hidden="true">✓</div></section>
 		<% } else { %>
 		<section class="panel"><div class="section-head"><h2>내 프로젝트</h2><a href="${pageContext.request.contextPath}/pages/workspace/dashboard.jsp">작업 공간 보기 ↗</a></div><h3>캠퍼스 생활을 더 편리하게</h3><p class="muted">대표 프로젝트 또는 최근 참여 프로젝트 · 화면 예시</p><div class="gantt"><div>기획 <span style="--start:0%;--length:25%"></span></div><div>진행 <span style="--start:25%;--length:50%"></span></div><div>검토 <span style="--start:75%;--length:25%"></span></div></div><div class="cards"><div><p>프로젝트 진행률</p><strong>25%</strong><progress value="25" max="100"></progress></div><div><p>팀 미션</p><strong>1 / 4</strong></div><div><p>개인 미션</p><strong>3개 남음</strong></div></div></section>
 		<% } %>

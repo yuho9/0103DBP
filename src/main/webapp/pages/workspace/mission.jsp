@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
     <title>미션 관리</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/workspace.css?v=7">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/workspace.css?v=7">
 </head>
 <body>
 <%@ include file="/pages/common/header.jsp" %>
