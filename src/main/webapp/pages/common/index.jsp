@@ -6,10 +6,30 @@
 	<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>팀플 매칭</title><link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css"><link rel="stylesheet" href="${pageContext.request.contextPath}/css/workspace.css">
 
     <style>
+        /* 로그인 전 소개 영역과 로그인 후 프로젝트 영역: 좌우 여백을 둔 동일한 최대 폭 */
+        .home:not(.home--with-project) {
+            width: calc(100% - 48px);
+            max-width: 1120px;
+            margin: 32px auto 48px;
+            padding: 0;
+        }
+        /* 추천 영역은 팀원이 맡은 기존 너비를 유지 */
+        .home:not(.home--with-project) > section:not(.hero) {
+            width: 100%;
+            max-width: 1072px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 580px) {
+            .home:not(.home--with-project) {
+                width: calc(100% - 28px);
+                margin: 18px auto 28px;
+            }
+        }
         /* 기존 프로젝트 컬러: 버건디 #570C28, 크림 #F7F5F2, 웜그레이 */
         .home.home--with-project {
             width: calc(100% - 48px);
-            max-width: 1480px;
+            max-width: 1120px;
             margin: 32px auto 48px;
             padding: 0;
         }
