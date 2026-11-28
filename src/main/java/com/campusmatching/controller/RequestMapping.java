@@ -35,8 +35,9 @@ public class RequestMapping {
         mapping.put("/", new HomeController());
         mapping.put("/myproject/dashboard", new DashboardController());
         mapping.put("/myproject/todos", new TodoController());
+        mapping.put("/myproject/mission", new MissionController());
+        mapping.put("/myproject/mission-workflow", new MissionWorkflowController());
         mapping.put("/myproject/schedule", new ScheduleController());
-        mapping.put("/myproject/missions", new MissionController());
     }
 
     public Controller findController(String uri) {
