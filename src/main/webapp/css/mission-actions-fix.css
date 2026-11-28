@@ -1,0 +1,54 @@
+/* 미션 관리: 팀 미션의 버튼을 폭 제한 없이 아래 줄에 표시해 잘림 방지 */
+#mission-list-page .mission-row.team-mission-row {
+  display: grid;
+  grid-template-columns: 25px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 10px;
+  row-gap: 9px;
+}
+#mission-list-page .team-mission-row > .mission-icon { grid-column: 1; grid-row: 1; }
+#mission-list-page .team-mission-row > .mission-info { grid-column: 2; grid-row: 1; min-width: 0; }
+#mission-list-page .team-mission-actions {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  gap: 6px;
+  overflow: visible;
+}
+#mission-list-page .team-mission-actions form { display: inline-flex; align-items: center; margin: 0; }
+#mission-list-page .team-mission-actions .mission-action { white-space: nowrap; }
+#mission-list-page .team-mission-actions select { max-width: 170px; min-width: 110px; }
+/* 개인 미션: 체크 원을 누르면 DB에 완료 또는 다시 진행 상태가 저장된다. */
+#mission-list-page .todo-toggle-form { display: inline-flex; flex: 0 0 25px; margin: 0; }
+#mission-list-page .todo-check-toggle {
+  appearance: none;
+  border: 1px solid #b7ada9;
+  background: #fff;
+  cursor: pointer;
+  padding: 0;
+  width: 25px;
+  height: 25px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 1;
+  transition: background-color .15s, border-color .15s;
+}
+#mission-list-page .todo-check-toggle.ongoing { color: #817a75; }
+#mission-list-page .todo-check-toggle.complete { color: #36774c; background: #e2f0e5; border-color: #91c19d; }
+#mission-list-page .todo-check-toggle:hover { border-color: #650d2b; background: #f7eef1; }
+#mission-list-page .todo-check-toggle:focus-visible { outline: 3px solid #a15a75; outline-offset: 2px; }
+#mission-list-page .personal-mission-row .mission-actions { max-width: 45%; }
+@media (max-width: 1050px) {
+  #mission-list-page .team-mission-actions { margin-left: 0; max-width: none; }
+  #mission-list-page .personal-mission-row .mission-actions { max-width: 100%; }
+}
+@media (max-width: 580px) {
+  #mission-list-page .team-mission-actions select { max-width: 125px; min-width: 95px; }
+}

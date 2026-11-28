@@ -1,0 +1,55 @@
+/* 일정 입력: 다이얼로그 자체는 스크롤 없이, 시간표 안에서만 스크롤. */
+#availability-dialog.availability-dialog { width:min(1040px,96vw); max-height:90dvh; height:min(800px,90dvh); padding:0; overflow:hidden; box-sizing:border-box; }
+#availability-dialog .availability-dialog-layout { display:flex; flex-direction:column; height:100%; min-height:0; }
+#availability-dialog .availability-dialog-top { flex:0 0 auto; padding:18px 22px 10px; }
+#availability-dialog .availability-dialog-top .section-head { margin-bottom:6px; }
+#availability-dialog .availability-dialog-top p { margin:4px 0; }
+#availability-dialog .availability-toolbar { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; padding:8px 0 2px; }
+#availability-dialog .availability-toolbar-actions { display:flex; gap:8px; }
+#availability-dialog .availability-scroll { flex:1 1 auto; min-height:0; max-height:none; overflow:auto; margin:0 12px 12px 22px; overscroll-behavior:contain; }
+#availability-dialog .availability-grid { margin:0; }
+/* 일주일 내내 아무도 불가능한 구간: 접기/펼치기 */
+#weekly-calendar .calendar-collapsed td { height:31px; padding:0; background:#f5f1ef; }
+#weekly-calendar .calendar-expand { width:100%; border:0; background:transparent; color:#75666d; font-size:12px; padding:7px 12px; cursor:pointer; text-align:center; }
+#weekly-calendar .calendar-expand:hover { background:#ede5e7; color:#650d2b; }
+#weekly-calendar .calendar-fold-detail[hidden] { display:none; }
+#weekly-calendar .person-slot { font-weight:400; box-shadow:none; }
+#calendar-legend .leader-name { font-weight:700; color:#650d2b; }
+@media(max-width:760px){#availability-dialog .availability-dialog-top{padding:12px 14px 8px}#availability-dialog .availability-scroll{margin:0 8px 8px 14px}}
+
+/* 미션: 기존 2열 카드 스타일 유지, 실제 폼 버튼 정리 */
+#mission-list-page .mission-actions form { display:inline-flex; margin:0; }
+#mission-list-page .mission-actions { align-items:center; }
+#mission-list-page .mission-assign-form { gap:4px; align-items:center; }
+#mission-list-page .mission-assign-form select { max-width:125px; padding:5px; border:1px solid #ded6d2; border-radius:5px; background:white; }
+#mission-list-page .mission-row .mission-icon { margin-top:2px; }
+
+/* 같은 요일 일정·가능 시간은 요일 표시 1회 + 가로 흐름으로 정리 */
+#availability-list .availability-day-row,
+#team-schedule-list .schedule-day-row {
+    display:flex;align-items:flex-start;gap:12px;
+    padding:10px 0;border-bottom:1px solid #eee8e4;
+}
+#availability-list .availability-day-label,
+#team-schedule-list .schedule-day-label {
+    min-width:76px;flex:0 0 76px;padding-top:6px;
+    font-size:13px;color:#650d2b;
+}
+#availability-list .availability-day-times,
+#team-schedule-list .schedule-day-events {
+    display:flex;flex:1;min-width:0;gap:8px;flex-wrap:wrap;
+}
+#availability-list .availability-day-times .tag {display:inline-block;width:auto;margin:2px 0;white-space:nowrap;}
+#team-schedule-list .schedule-event-card {
+    display:flex;flex-direction:column;gap:4px;
+    min-width:170px;flex:1 1 170px;max-width:100%;
+    background:#faf7f5;border:1px solid #ebe2de;border-radius:8px;padding:10px;
+    overflow-wrap:anywhere;
+}
+#team-schedule-list .schedule-event-card small{color:#766e68;}
+#team-schedule-list .schedule-event-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px;}
+#team-schedule-list .schedule-event-actions .btn{font-size:12px;padding:4px 8px;}
+@media(max-width:600px){
+  #availability-list .availability-day-row,#team-schedule-list .schedule-day-row{gap:8px;}
+  #availability-list .availability-day-label,#team-schedule-list .schedule-day-label{min-width:52px;flex-basis:52px;}
+}
